@@ -23,6 +23,12 @@ public interface ApiService {
                                        @Field("password") String password);
 
     @FormUrlEncoded
+    @POST("InputBayi.php")
+    Call<ResponseBody> inputBayiRequest(@Field("nama_bayi") String nama_bayi,
+                                       @Field("tgl_lahir") String tgl_lahir,
+                                       @Field("jenis_kelamin") String jenis_kelamin);
+
+    @FormUrlEncoded
     @POST("tampilAkun.php")
     Call<ResponseBody> tampilAkunRequest(@Field("id") String id);
 }
