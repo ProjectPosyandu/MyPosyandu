@@ -16,6 +16,13 @@
             app:destination="@id/nav_home_second" />
     </fragment>
     <fragment
+        android:id="@+id/nav_jadwal"
+        android:name="com.example.myposyandu.ui.JadwalFragment"
+        android:label="@string/menu_jadwal"
+        tools:layout="@layout/fragment_jadwal">
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_home_second"
         android:name="com.example.myposyandu.ui.home.HomeSecondFragment"
         android:label="@string/home_second"
