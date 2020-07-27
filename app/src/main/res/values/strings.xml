@@ -9,9 +9,9 @@
     <string name="action_settings">Profil</string>
     <string name="action_settings2">Keluar</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Jadwal Imunisasi</string>
-    <string name="menu_slideshow">Artikel</string>
+    <string name="menu_data_bayi">Data Bayi</string>
+    <string name="menu_jadwal">Jadwal Imunisasi</string>
+    <string name="menu_artikel">Artikel</string>
 
     <string name="home_second">Home Second</string>
 
