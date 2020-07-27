@@ -26,7 +26,8 @@ public interface ApiService {
     @POST("InputBayi.php")
     Call<ResponseBody> inputBayiRequest(@Field("nama_bayi") String nama_bayi,
                                        @Field("tgl_lahir") String tgl_lahir,
-                                       @Field("jenis_kelamin") String jenis_kelamin);
+                                       @Field("jenis_kelamin") String jenis_kelamin,
+                                        @Field("id") String id);
 
     @FormUrlEncoded
     @POST("tampilAkun.php")
