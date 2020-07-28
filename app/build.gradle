@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.myposyandu"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -46,4 +46,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
     implementation 'cyd.awesome.android:awesome-material:1.0'
+
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 }
