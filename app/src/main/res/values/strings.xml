@@ -10,6 +10,7 @@
     <string name="action_settings2">Keluar</string>
 
     <string name="menu_data_bayi">Data Bayi</string>
+    <string name="menu_detail_bayi">Detail Data Bayi</string>
     <string name="menu_jadwal">Jadwal Imunisasi</string>
     <string name="menu_artikel">Artikel</string>
 
