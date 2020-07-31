@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".DetailBayiActivity"></activity>
-        <activity android:name=".CobaActivity"></activity>
+        <activity android:name=".CobaActivity">
+        </activity>
         <activity android:name=".TambahBayiActivity" />
         <activity
             android:name=".Main2Activity"

@@ -10,30 +10,36 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.myposyandu.ui.DetailBayiFragment;
+import com.example.myposyandu.model.ModelDataBayi;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<String> fotoBayi = new ArrayList<>();
-    private ArrayList<String> namaBayi = new ArrayList<>();
-    private ArrayList<String> detailBayi = new ArrayList<>();
-    private Context context;
-    public FragmentManager f_manager;
+//    private ArrayList<String> fotoBayi = new ArrayList<>();
+//    private ArrayList<String> namaBayi = new ArrayList<>();
+//    private ArrayList<String> detailBayi = new ArrayList<>();
+//    public FragmentManager f_manager;
+    private Context ctx;
+    private List<ModelDataBayi> ListData;
 
-    public RecyclerViewAdapter(ArrayList<String> fotoBayi, ArrayList<String> namaBayi, ArrayList<String> detailBayi, Context context, FragmentManager f_manager ) {
-        this.fotoBayi = fotoBayi;
-        this.namaBayi = namaBayi;
-        this.detailBayi = detailBayi;
-        this.context = context;
-        this.f_manager = f_manager;
+
+//    public RecyclerViewAdapter(ArrayList<String> fotoBayi, ArrayList<String> namaBayi, ArrayList<String> detailBayi, Context context, FragmentManager f_manager ) {
+//        this.fotoBayi = fotoBayi;
+//        this.namaBayi = namaBayi;
+//        this.detailBayi = detailBayi;
+//        this.context = context;
+//        this.f_manager = f_manager;
+//    }
+
+
+    public RecyclerViewAdapter(Context ctx, List<ModelDataBayi> listData) {
+        this.ctx = ctx;
+        ListData = listData;
     }
 
     @NonNull
@@ -47,18 +53,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(context).asBitmap().load(fotoBayi.get(position)).into(holder.imageView2);
-        holder.tvnamaBayi.setText(namaBayi.get(position));
+//        Glide.with(context).asBitmap().load(fotoBayi.get(position)).into(holder.imageView2);
+//        holder.tvnamaBayi.setText(namaBayi.get(position));
+//        ModelDataBayi debay = listBayi.get(position);
+        ModelDataBayi dm = ListData.get(position);
+        holder.tvnamaBayi.setText(dm.getNama_bayi());
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(context, namaBayi.get(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ctx, dm.getNama_bayi(), Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(context, DetailBayiActivity.class);
-                intent.putExtra("foto_bayi", fotoBayi.get(position));
-                intent.putExtra("nama_bayi", namaBayi.get(position));
-                intent.putExtra("detail_bayi", detailBayi.get(position));
-                context.startActivity(intent);
+                Intent intent = new Intent(ctx, DetailBayiActivity.class);
+                intent.putExtra("nama_bayi", dm.getNama_bayi());
+                intent.putExtra("jenis_kelamin", dm.getJenis_kelamin());
+                ctx.startActivity(intent);
 
 //                f_manager.beginTransaction()
 //                        .replace(R.id.nav_host_fragment, new DetailBayiFragment())
@@ -70,7 +78,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return namaBayi.size();
+//        return namaBayi.size();
+        return ListData.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

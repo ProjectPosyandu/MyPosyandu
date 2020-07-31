@@ -27,11 +27,13 @@ public class DetailBayiActivity extends AppCompatActivity {
     }
 
     private void getIncomingExtra(){
-        String sfotoBayi = getIntent().getStringExtra("foto_bayi");
-        String snamaBayi = getIntent().getStringExtra("nama_bayi");
-        String sinfoBayi = getIntent().getStringExtra("info_bayi");
+//        String sfotoBayi = getIntent().getStringExtra("foto_bayi");
+//        String snamaBayi = getIntent().getStringExtra("nama_bayi");
+//        String sinfoBayi = getIntent().getStringExtra("info_bayi");
+        String namaBayi = getIntent().getStringExtra("nama_bayi");
+        String jenis = getIntent().getStringExtra("jenis_kelamin");
 
-        setDataActivity(sfotoBayi, snamaBayi, sinfoBayi);
+        setDataActivity(namaBayi, jenis);
 
 //        if(getIntent().hasExtra("foto_bayi") && getIntent().hasExtra("nama_bayi") && getIntent().hasExtra("info_bayi")){
 //            String sfotoBayi = getIntent().getStringExtra("foto_bayi");
@@ -44,9 +46,9 @@ public class DetailBayiActivity extends AppCompatActivity {
 //        }
     }
 
-    private void setDataActivity(String sfotoBayi, String snamaBayi, String sinfoBayi){
-        Glide.with(this).asBitmap().load(sfotoBayi).into(ifotoBayi);
+    private void setDataActivity(String snamaBayi, String jenis){
+//        Glide.with(this).asBitmap().load(sfotoBayi).into(ifotoBayi);
         tvNamaBayi.setText(snamaBayi);
-        tvInfoBayi.setText(sinfoBayi);
+        tvInfoBayi.setText(jenis);
     }
 }
