@@ -4,6 +4,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -32,4 +33,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("tampilAkun.php")
     Call<ResponseBody> tampilAkunRequest(@Field("id") String id);
+
+    @GET("chart.php")
+    Call<ChartResponse> getResponse();
+
+    @GET("getChart.php")
+    Call<ResponseBody> getDataChart();
 }
