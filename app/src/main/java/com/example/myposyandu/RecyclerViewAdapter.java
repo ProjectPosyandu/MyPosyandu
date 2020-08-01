@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myposyandu.model.ModelDataBayi;
 
 import java.util.List;
@@ -53,10 +54,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        Glide.with(context).asBitmap().load(fotoBayi.get(position)).into(holder.imageView2);
+
 //        holder.tvnamaBayi.setText(namaBayi.get(position));
 //        ModelDataBayi debay = listBayi.get(position);
         ModelDataBayi dm = ListData.get(position);
+        Glide.with(ctx).asBitmap().load(dm.getFoto_bayi()).into(holder.imageView2);
         holder.tvnamaBayi.setText(dm.getNama_bayi());
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +66,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //                Toast.makeText(ctx, dm.getNama_bayi(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(ctx, DetailBayiActivity.class);
+                intent.putExtra("foto_bayi", dm.getFoto_bayi());
                 intent.putExtra("nama_bayi", dm.getNama_bayi());
                 intent.putExtra("jenis_kelamin", dm.getJenis_kelamin());
                 ctx.startActivity(intent);

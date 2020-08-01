@@ -35,4 +35,9 @@
         android:name="com.example.myposyandu.ui.ArtikelFragment"
         android:label="@string/menu_artikel"
         tools:layout="@layout/fragment_artikel" />
+    <fragment
+        android:id="@+id/nav_tambahBayi"
+        android:name="com.example.myposyandu.ui.TambahBayiFragment"
+        android:label="@string/tambah_bayi"
+        tools:layout="@layout/fragment_tambah_bayi" />
 </navigation>
