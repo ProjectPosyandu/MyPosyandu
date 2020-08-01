@@ -4,13 +4,14 @@ import java.util.List;
 
 public class ModelDataBayi {
     private int id_bayi;
-    private String nama_bayi,tgl_lahir, jenis_kelamin;
+    private String nama_bayi,tgl_lahir, jenis_kelamin, foto_bayi;
 
-    public ModelDataBayi(int id_bayi, String nama_bayi, String tgl_lahir, String jenis_kelamin) {
+    public ModelDataBayi(int id_bayi, String nama_bayi, String tgl_lahir, String jenis_kelamin, String foto_bayi) {
         this.id_bayi = id_bayi;
         this.nama_bayi = nama_bayi;
         this.tgl_lahir = tgl_lahir;
         this.jenis_kelamin = jenis_kelamin;
+        this.foto_bayi = foto_bayi;
     }
 
     public int getId_bayi() {
@@ -43,5 +44,13 @@ public class ModelDataBayi {
 
     public void setJenis_kelamin(String jenis_kelamin) {
         this.jenis_kelamin = jenis_kelamin;
+    }
+
+    public String getFoto_bayi() {
+        return foto_bayi;
+    }
+
+    public void setFoto_bayi(String foto_bayi) {
+        this.foto_bayi = foto_bayi;
     }
 }

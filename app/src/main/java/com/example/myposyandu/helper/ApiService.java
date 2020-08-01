@@ -31,9 +31,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("InputBayi.php")
     Call<ResponseBody> inputBayiRequest(@Field("nama_bayi") String nama_bayi,
-                                       @Field("tgl_lahir") String tgl_lahir,
-                                       @Field("jenis_kelamin") String jenis_kelamin,
-                                        @Field("id") String id);
+                                        @Field("tgl_lahir") String tgl_lahir,
+                                        @Field("jenis_kelamin") String jenis_kelamin,
+                                        @Field("foto_bayi") String foto_bayi,
+                                        @Field("id") String id,
+                                        @Field("berat_bayi") String berat_bayi,
+                                        @Field("tinggi_bayi") String tinggi_bayi);
 
     @FormUrlEncoded
     @POST("tampilAkun.php")

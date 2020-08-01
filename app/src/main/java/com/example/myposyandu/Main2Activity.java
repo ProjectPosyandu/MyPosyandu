@@ -1,6 +1,7 @@
 
 package com.example.myposyandu;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.myposyandu.ui.DataBayiFragment;
 import com.example.myposyandu.ui.JadwalFragment;
+import com.example.myposyandu.ui.TambahBayiFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -26,6 +28,7 @@ public class Main2Activity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     NavigationView navigationView;
     SharedPrefManager sharedPrefManager;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class Main2Activity extends AppCompatActivity {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
                 startActivity(new Intent(getApplicationContext(), TambahBayiActivity.class));
+
             }
         });
 
@@ -61,7 +65,7 @@ public class Main2Activity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_bayi, R.id.nav_jadwal, R.id.nav_artikel)
+                R.id.nav_bayi, R.id.nav_jadwal, R.id.nav_artikel, R.id.nav_tambahBayi)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
