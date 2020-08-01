@@ -1,24 +1,16 @@
-package com.example.myposyandu.ui;
+package com.example.myposyandu;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myposyandu.CobaActivity;
-import com.example.myposyandu.R;
-import com.example.myposyandu.RecyclerViewAdapter;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import com.example.myposyandu.helper.ApiService;
-import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
+import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ResponseModel;
 
 import java.util.ArrayList;
@@ -28,32 +20,40 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DataBayiFragment extends Fragment {
+public class CobaActivity extends AppCompatActivity {
+    private ArrayList<String> fotoBayi = new ArrayList<>();
+    private ArrayList<String> namaBayi = new ArrayList<>();
+    private ArrayList<String> detailBayi = new ArrayList<>();
+    public FragmentManager f_manager;
+
     private RecyclerView rvData;
     private RecyclerView.Adapter adData;
     private RecyclerView.LayoutManager lmData;
     private List<ModelDataBayi> listData = new ArrayList<>();
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_data_bayi, container, false);
-        rvData = root.findViewById(R.id.rvDataBayi);
-        lmData = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_coba);
+
+        rvData = findViewById(R.id.rvDataBayi);
+        lmData = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
+
         getDataBayi();
 
-        return root;
+//        getDataFromInternet();
     }
 
-//    private void prosesRecyclerViewAdapter(View root){
-//        RecyclerView recyclerView = root.findViewById(R.id.rvDataBayi);
-//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(fotoBayi,namaBayi, detailBayi, getContext(),f_manager);
+//    private void prosesRecyclerViewAdapter(){
+//        RecyclerView recyclerView = findViewById(R.id.rvDataBayi);
+//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(fotoBayi,namaBayi, detailBayi, this, f_manager);
 //
 //        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //    }
-//
-//    private void getDataFromInternet(View root){
+
+//    private void getDataFromInternet(){
 //        namaBayi.add("Bayi Satu");
 //        fotoBayi.add("https://cdn-brilio-net.akamaized.net/news/2018/03/08/139907/748829-bayi-dikelilingi-bunga-gaba-.jpg");
 //        detailBayi.add("Ini detail bayi");
@@ -66,7 +66,7 @@ public class DataBayiFragment extends Fragment {
 //        fotoBayi.add("https://cdn-brilio-net.akamaized.net/news/2018/03/08/139907/748833-bayi-dikelilingi-bunga-gaba-.jpg");
 //        detailBayi.add("Ini detail bayi");
 //
-//        prosesRecyclerViewAdapter(root);
+//        prosesRecyclerViewAdapter();
 //    }
 
     public void getDataBayi(){
@@ -80,11 +80,11 @@ public class DataBayiFragment extends Fragment {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                Toast.makeText(getContext(), "Kode : "+kode+"Pesan : "+pesan, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CobaActivity.this, "Kode : "+kode+"Pesan : "+pesan, Toast.LENGTH_SHORT).show();
 
                 listData = response.body().getData();
 
-                adData = new RecyclerViewAdapter(getContext(), listData);
+                adData = new RecyclerViewAdapter(CobaActivity.this, listData);
                 rvData.setAdapter(adData);
                 adData.notifyDataSetChanged();
 
@@ -92,9 +92,8 @@ public class DataBayiFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
-                Toast.makeText(getContext(), "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CobaActivity.this, "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 }

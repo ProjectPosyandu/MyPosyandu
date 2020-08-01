@@ -1,5 +1,10 @@
 package com.example.myposyandu.helper;
 
+import com.example.myposyandu.model.ModelDataBayi;
+import com.example.myposyandu.model.ResponseModel;
+
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -39,4 +44,7 @@ public interface ApiService {
 
     @GET("getChart.php")
     Call<ResponseBody> getDataChart();
+
+    @GET("tampilBayi.php")
+    Call<ResponseModel> ardRetrieveData();
 }

@@ -3,13 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_bayi">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_bayi"
         android:name="com.example.myposyandu.ui.DataBayiFragment"
         android:label="@string/menu_data_bayi"
         tools:layout="@layout/fragment_data_bayi">
+
+        <action
+            android:id="@+id/action_nav_bayi_to_nav_detail_bayi"
+            app:destination="@id/nav_detail_bayi" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_detail_bayi"
+        android:name="com.example.myposyandu.ui.DetailBayiFragment"
+        android:label="@string/menu_detail_bayi"
+        tools:layout="@layout/fragment_detail_bayi">
 
     </fragment>
 
@@ -21,13 +31,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.myposyandu.ui.JadwalFragment"
-        android:label="@string/menu_jadwal"
-        tools:layout="@layout/fragment_jadwal" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_artikel"
         android:name="com.example.myposyandu.ui.ArtikelFragment"
         android:label="@string/menu_artikel"
         tools:layout="@layout/fragment_artikel" />
