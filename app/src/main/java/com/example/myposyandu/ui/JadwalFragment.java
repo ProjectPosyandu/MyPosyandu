@@ -67,7 +67,7 @@ public class JadwalFragment extends Fragment {
     private void getChartData(){
         mContext = getActivity();
         mApiService = UtilsApi.getAPIService();
-        mApiService.getDataChart().enqueue(new Callback<ResponseBody>() {
+        mApiService.getDataChartBoys().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()){

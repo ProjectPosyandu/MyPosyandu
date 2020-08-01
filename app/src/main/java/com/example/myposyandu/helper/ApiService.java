@@ -39,11 +39,8 @@ public interface ApiService {
     @POST("tampilAkun.php")
     Call<ResponseBody> tampilAkunRequest(@Field("id") String id);
 
-    @GET("chart.php")
-    Call<ChartResponse> getResponse();
-
-    @GET("getChart.php")
-    Call<ResponseBody> getDataChart();
+    @GET("getChartBoys.php")
+    Call<ResponseBody> getDataChartBoys();
 
     @GET("tampilBayi.php")
     Call<ResponseModel> ardRetrieveData();

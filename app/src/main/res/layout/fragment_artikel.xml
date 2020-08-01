@@ -6,9 +6,4 @@
     android:layout_height="match_parent"
     tools:context=".ui.ArtikelFragment">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/any_chart_view3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 </LinearLayout>
