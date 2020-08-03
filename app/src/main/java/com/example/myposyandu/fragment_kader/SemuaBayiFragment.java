@@ -15,7 +15,7 @@ public class SemuaBayiFragment extends Fragment {
 
    public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.fragment_semua_bayi, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
 
         return root;
