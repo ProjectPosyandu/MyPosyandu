@@ -56,24 +56,31 @@
             android:text="Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/etPassword"
-            android:hint="Password"
-            android:drawablePadding="20dp"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
-        <cyd.awesome.material.AwesomeText
-            android:id="@+id/ImgShowPassword"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="#F40317"
-            android:textSize="20dp"
-            app:awesome_font="material_design"
-            app:awesome_icon="MD_VISIBILITY_OFF" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etPassword"
+                android:hint="Password"
+                android:drawablePadding="20dp"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <cyd.awesome.material.AwesomeText
+                android:id="@+id/ImgShowPassword"
+                android:layout_alignRight="@id/etPassword"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:awesome_font="material_design"
+                app:awesome_icon="MD_VISIBILITY_OFF" />
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btnLogin"
