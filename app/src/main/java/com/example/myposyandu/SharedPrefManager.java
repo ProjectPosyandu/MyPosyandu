@@ -9,6 +9,7 @@ public class SharedPrefManager {
     public static final String SP_ID = "spId";
     public static final String SP_NAMA = "spNama";
     public static final String SP_EMAIL = "spEmail";
+    public static final String SP_JK = "spJk";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -30,5 +31,9 @@ public class SharedPrefManager {
 
     public String getSPEmail(){
         return sp.getString(SP_EMAIL, "");
+    }
+
+    public String getSpJk(){
+        return  sp.getString(SP_JK, "");
     }
 }
