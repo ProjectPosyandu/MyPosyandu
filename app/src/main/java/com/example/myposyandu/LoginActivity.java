@@ -114,15 +114,15 @@ public class LoginActivity extends AppCompatActivity {
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
 
-                                    if (level_user.equals("1")){
+                                    if (level_user.equals("1")){ //level 1 = kader (admin)
+                                        startActivity(new Intent(mContext, Main3Activity.class)
+                                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                        finish();
+                                    }else if (level_user.equals("2")){  //level 2 = bidan
                                         startActivity(new Intent(mContext, MainActivity.class)
                                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                                         finish();
-                                    }else if (level_user.equals("2")){
-                                        startActivity(new Intent(mContext, Main2Activity.class)
-                                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-                                        finish();
-                                    }else if (level_user.equals("3")){
+                                    }else if (level_user.equals("3")){   //level 3 = ibu bayi
                                         startActivity(new Intent(mContext, Main2Activity.class)
                                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                                         finish();

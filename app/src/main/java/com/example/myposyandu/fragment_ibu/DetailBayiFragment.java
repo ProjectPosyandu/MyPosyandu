@@ -1,4 +1,4 @@
-package com.example.myposyandu.ui;
+package com.example.myposyandu.fragment_ibu;
 
 import android.os.Bundle;
 
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.myposyandu.R;
 
 public class DetailBayiFragment extends Fragment {

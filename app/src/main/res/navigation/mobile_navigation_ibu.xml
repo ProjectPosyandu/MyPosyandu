@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_bayi"
-        android:name="com.example.myposyandu.ui.DataBayiFragment"
+        android:name="com.example.myposyandu.fragment_ibu.DataBayiFragment"
         android:label="@string/menu_data_bayi"
         tools:layout="@layout/fragment_data_bayi">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_detail_bayi"
-        android:name="com.example.myposyandu.ui.DetailBayiFragment"
+        android:name="com.example.myposyandu.fragment_ibu.DetailBayiFragment"
         android:label="@string/menu_detail_bayi"
         tools:layout="@layout/fragment_detail_bayi">
 
@@ -25,19 +25,19 @@
 
     <fragment
         android:id="@+id/nav_jadwal"
-        android:name="com.example.myposyandu.ui.JadwalFragment"
+        android:name="com.example.myposyandu.fragment_ibu.JadwalFragment"
         android:label="@string/menu_jadwal"
         tools:layout="@layout/fragment_jadwal">
     </fragment>
 
     <fragment
         android:id="@+id/nav_artikel"
-        android:name="com.example.myposyandu.ui.ArtikelFragment"
+        android:name="com.example.myposyandu.fragment_ibu.ArtikelFragment"
         android:label="@string/menu_artikel"
         tools:layout="@layout/fragment_artikel" />
     <fragment
         android:id="@+id/nav_tambahBayi"
-        android:name="com.example.myposyandu.ui.TambahBayiFragment"
+        android:name="com.example.myposyandu.fragment_ibu.TambahBayiFragment"
         android:label="@string/tambah_bayi"
         tools:layout="@layout/fragment_tambah_bayi" />
 </navigation>

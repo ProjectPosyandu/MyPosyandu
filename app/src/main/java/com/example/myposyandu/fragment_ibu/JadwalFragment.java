@@ -1,13 +1,11 @@
-package com.example.myposyandu.ui;
+package com.example.myposyandu.fragment_ibu;
 
 import android.content.Context;
-import android.icu.text.NumberingSystem;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

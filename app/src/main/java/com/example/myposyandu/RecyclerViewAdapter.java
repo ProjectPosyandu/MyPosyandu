@@ -13,6 +13,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
 
 import java.util.List;
@@ -58,7 +61,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //        holder.tvnamaBayi.setText(namaBayi.get(position));
 //        ModelDataBayi debay = listBayi.get(position);
         ModelDataBayi dm = ListData.get(position);
-        Glide.with(ctx).asBitmap().load(dm.getFoto_bayi()).into(holder.imageView2);
+        RequestOptions requestOptions = new RequestOptions();
+            requestOptions.skipMemoryCache(true);
+            requestOptions.diskCacheStrategy(DiskCacheStrategy.NONE);
+            requestOptions.placeholder(R.mipmap.ic_launcher_round);
+            requestOptions.error(R.mipmap.ic_launcher_round);
+            Glide.with(ctx)
+                    .load(UtilsApi.BASE_URL_API+dm.getFoto_bayi())
+                    .apply(requestOptions)
+                    .into(holder.imageView2);
+//        Glide.with(ctx).asBitmap().load(dm.getFoto_bayi()).into(holder.imageView2);
         holder.tvnamaBayi.setText(dm.getNama_bayi());
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override

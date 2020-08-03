@@ -1,11 +1,10 @@
-package com.example.myposyandu.ui;
+package com.example.myposyandu.fragment_ibu;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,7 +18,6 @@ import com.example.myposyandu.helper.ChartResponse;
 import com.example.myposyandu.helper.RetrofitClient;
 import com.example.myposyandu.helper.Sales;
 import com.example.myposyandu.helper.UtilsApi;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
