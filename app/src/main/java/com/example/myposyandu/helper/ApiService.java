@@ -45,6 +45,9 @@ public interface ApiService {
     @GET("getChartBoys.php")
     Call<ResponseBody> getDataChartBoys();
 
+    @GET("getChartGirls.php")
+    Call<ResponseBody> getDataChartGirls();
+
     @GET("tampilBayi.php")
     Call<ResponseModel> ardRetrieveData();
 }

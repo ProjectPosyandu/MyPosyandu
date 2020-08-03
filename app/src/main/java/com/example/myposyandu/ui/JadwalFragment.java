@@ -1,6 +1,10 @@
 package com.example.myposyandu.ui;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.icu.text.NumberingSystem;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import okhttp3.ResponseBody;
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +35,7 @@ import com.anychart.enums.MarkerType;
 import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
 import com.example.myposyandu.R;
+import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 
@@ -43,6 +50,8 @@ import java.util.List;
 public class JadwalFragment extends Fragment {
     Context mContext;
     ApiService mApiService;
+    SharedPrefManager sharedPrefManager;
+
     private static final String TAG = "TAG";
     List<String> usiaList = new ArrayList<>();
     List<Number> kurangList = new ArrayList<>();
@@ -50,8 +59,6 @@ public class JadwalFragment extends Fragment {
     List<Number> idealList = new ArrayList<>();
     List<Number> idealAtasList = new ArrayList<>();
     List<Number> lebihList = new ArrayList<>();
-
-    List<Number> salesList = new ArrayList<>();
 
     AnyChartView anyChartView;
 
@@ -207,4 +214,5 @@ public class JadwalFragment extends Fragment {
        setValue("value5", value5);
   }
  }
+
 }

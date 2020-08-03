@@ -57,6 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 //        holder.tvnamaBayi.setText(namaBayi.get(position));
 //        ModelDataBayi debay = listBayi.get(position);
+
         ModelDataBayi dm = ListData.get(position);
         Glide.with(ctx).asBitmap().load(dm.getFoto_bayi()).into(holder.imageView2);
         holder.tvnamaBayi.setText(dm.getNama_bayi());
@@ -69,6 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("foto_bayi", dm.getFoto_bayi());
                 intent.putExtra("nama_bayi", dm.getNama_bayi());
                 intent.putExtra("jenis_kelamin", dm.getJenis_kelamin());
+
                 ctx.startActivity(intent);
 
 //                f_manager.beginTransaction()
