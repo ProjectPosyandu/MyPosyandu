@@ -1,5 +1,5 @@
 
-package com.example.myposyandu;
+package com.example.myposyandu.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.myposyandu.R;
+import com.example.myposyandu.SharedPrefManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 

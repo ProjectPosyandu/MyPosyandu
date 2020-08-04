@@ -1,10 +1,12 @@
-package com.example.myposyandu;
+package com.example.myposyandu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.myposyandu.R;
 
 public class SplashActivity extends AppCompatActivity {
     private int waktu_loading=4000;

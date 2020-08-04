@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.myposyandu.activity.DetailBayiActivity;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
 
@@ -24,22 +24,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-//    private ArrayList<String> fotoBayi = new ArrayList<>();
-//    private ArrayList<String> namaBayi = new ArrayList<>();
-//    private ArrayList<String> detailBayi = new ArrayList<>();
-//    public FragmentManager f_manager;
     private Context ctx;
     private List<ModelDataBayi> ListData;
-
-
-//    public RecyclerViewAdapter(ArrayList<String> fotoBayi, ArrayList<String> namaBayi, ArrayList<String> detailBayi, Context context, FragmentManager f_manager ) {
-//        this.fotoBayi = fotoBayi;
-//        this.namaBayi = namaBayi;
-//        this.detailBayi = detailBayi;
-//        this.context = context;
-//        this.f_manager = f_manager;
-//    }
-
 
     public RecyclerViewAdapter(Context ctx, List<ModelDataBayi> listData) {
         this.ctx = ctx;
@@ -57,10 +43,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-//        holder.tvnamaBayi.setText(namaBayi.get(position));
-//        ModelDataBayi debay = listBayi.get(position);
-
         ModelDataBayi dm = ListData.get(position);
         RequestOptions requestOptions = new RequestOptions();
             requestOptions.skipMemoryCache(true);

@@ -52,30 +52,6 @@ public class DataBayiFragment extends Fragment {
         return root;
     }
 
-//    private void prosesRecyclerViewAdapter(View root){
-//        RecyclerView recyclerView = root.findViewById(R.id.rvDataBayi);
-//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(fotoBayi,namaBayi, detailBayi, getContext(),f_manager);
-//
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//    }
-//
-//    private void getDataFromInternet(View root){
-//        namaBayi.add("Bayi Satu");
-//        fotoBayi.add("https://cdn-brilio-net.akamaized.net/news/2018/03/08/139907/748829-bayi-dikelilingi-bunga-gaba-.jpg");
-//        detailBayi.add("Ini detail bayi");
-//
-//        namaBayi.add("Bayi Dua");
-//        fotoBayi.add("https://cdn-brilio-net.akamaized.net/news/2018/03/08/139907/748832-bayi-dikelilingi-bunga-gaba-.jpg");
-//        detailBayi.add("Ini detail bayi");
-//
-//        namaBayi.add("Bayi Tiga");
-//        fotoBayi.add("https://cdn-brilio-net.akamaized.net/news/2018/03/08/139907/748833-bayi-dikelilingi-bunga-gaba-.jpg");
-//        detailBayi.add("Ini detail bayi");
-//
-//        prosesRecyclerViewAdapter(root);
-//    }
-
     public void getDataBayi(String id){
 
         ApiService ardData = UtilsApi.getAPIService();
