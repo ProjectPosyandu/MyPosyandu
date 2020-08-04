@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment_ibu.DetailBayiFragment">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp">
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,26 +27,96 @@
                 android:id="@+id/ifotoBayi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/tvNamaBayi"
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Bayi"
-                android:textAlignment="center"
-                android:textSize="30sp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="10dp">
 
-            <TextView
-                android:id="@+id/tvInfoBayi"
+                <TableRow
+                    android:layout_margin="5dp">
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Nama Bayi"
+                        android:textSize="15sp"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tvNamaBayi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_margin="5dp">
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Tanggal Lahir"
+                        android:textSize="15sp"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tvTglLahir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_margin="5dp">
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Jenis Kelamin"
+                        android:textSize="15sp"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tvJenisKelamin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="TextView" />
+                </TableRow>
+            </TableLayout>
+            <Button
+                android:id="@+id/btnChart"
+                android:text="Grafik Perkembangan"
+                android:textColor="#FFF"
+                android:background="@drawable/rec_gradient"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="10dp"
-                android:text="TextView TextView TextView TextView TextView TextView TextView TextView TextView TextView " />
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btnUpdateChart"
+                android:text="Update Grafik"
+                android:textColor="#FFF"
+                android:background="@drawable/rec_gradient"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

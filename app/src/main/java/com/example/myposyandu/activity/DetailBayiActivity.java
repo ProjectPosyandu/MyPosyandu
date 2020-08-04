@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.myposyandu.R;
 import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.fragment_ibu.ChartFragment;
+import com.example.myposyandu.fragment_ibu.DetailBayiFragment;
 
 public class DetailBayiActivity extends AppCompatActivity {
     ImageView ifotoBayi;
@@ -30,48 +31,20 @@ public class DetailBayiActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(this);
 
-        ifotoBayi = findViewById(R.id.ifotoBayi);
-        tvNamaBayi = findViewById(R.id.tvNamaBayi);
-        tvJK = findViewById(R.id.tvJenisKelamin);
-        tvTgl = findViewById(R.id.tvTglLahir);
-        btnChart = findViewById(R.id.btnChart);
-        btnUpdate = findViewById(R.id.btnUpdateChart);
-
         getIncomingExtra();
-
-        btnChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
-                        new ChartFragment()).commit();
-            }
-        });
-
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
-                        new ChartFragment()).commit();
-            }
-        });
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment,
+                    new DetailBayiFragment()).commit();
+        }
 
     }
 
     private void getIncomingExtra(){
-//        String fotoBayi = getIntent().getStringExtra("foto_bayi");
-        String namaBayi = getIntent().getStringExtra("nama_bayi");
-        String jenis = getIntent().getStringExtra("jenis_kelamin");
-        String tglLahir = getIntent().getStringExtra("tgl_lahir");
-        sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, jenis);
-        setDataActivity(namaBayi, jenis, tglLahir);
+        String jk = getIntent().getStringExtra("jenis_kelamin");
+        int id_bayi = getIntent().getIntExtra("id_bayi", 0);
+        sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, jk);
+        sharedPrefManager.saveSPInt(sharedPrefManager.SP_ID_BAYI, id_bayi);
 
-    }
-
-    private void setDataActivity(String snamaBayi, String jenis, String tglLahir){
-//        Glide.with(this).asBitmap().load(fotoBayi).into(ifotoBayi);
-        tvNamaBayi.setText(snamaBayi);
-        tvJK.setText(jenis);
-        tvTgl.setText(tglLahir);
     }
 
 

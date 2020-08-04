@@ -44,6 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ModelDataBayi dm = ListData.get(position);
+
         RequestOptions requestOptions = new RequestOptions();
             requestOptions.skipMemoryCache(true);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.NONE);
@@ -53,24 +54,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     .load(UtilsApi.BASE_URL_API+dm.getFoto_bayi())
                     .apply(requestOptions)
                     .into(holder.imageView2);
-//        Glide.with(ctx).asBitmap().load(dm.getFoto_bayi()).into(holder.imageView2);
+
         holder.tvnamaBayi.setText(dm.getNama_bayi());
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(ctx, dm.getNama_bayi(), Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(ctx, DetailBayiActivity.class);
-//                intent.putExtra("foto_bayi", dm.getFoto_bayi());
                 intent.putExtra("nama_bayi", dm.getNama_bayi());
                 intent.putExtra("jenis_kelamin", dm.getJenis_kelamin());
                 intent.putExtra("tgl_lahir", dm.getTgl_lahir());
+                intent.putExtra("id_bayi", dm.getId_bayi());
 
                 ctx.startActivity(intent);
 
-//                f_manager.beginTransaction()
-//                        .replace(R.id.nav_host_fragment, new DetailBayiFragment())
-//                        .commit();
             }
         });
 
