@@ -51,4 +51,10 @@ public interface ApiService {
     @POST("tampilBayi.php")
     Call<ResponseModel> getDataBayi(@Field("id") String id);
 
+    @FormUrlEncoded
+    @POST("tampilPerBayi.php")
+    Call<ResponseBody> getDataPerBayi(@Field("id") int id);
+
+
+
 }

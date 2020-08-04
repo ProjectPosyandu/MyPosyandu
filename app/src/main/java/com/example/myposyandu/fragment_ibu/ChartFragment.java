@@ -56,16 +56,27 @@ public class ChartFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_jadwal, container, false);
+        View root = inflater.inflate(R.layout.fragment_chart, container, false);
         anyChartView = root.findViewById(R.id.chart_bayi);
-
-        getChartData();
+        mContext = getActivity();
+        mApiService = UtilsApi.getAPIService();
+        sharedPrefManager = new SharedPrefManager(getActivity());
+        String jk = sharedPrefManager.getSpJk();
+        if (jk.equals("Perempuan")){
+            getChartDataGirls();
+        }else {
+            getChartDataBoys();
+        }
         return root;
     }
 
-    private void getChartData(){
-        mContext = getActivity();
-        mApiService = UtilsApi.getAPIService();
+    private void getChartDataBoys(){
+        usiaList.clear();
+        kurangList.clear();
+        idealBawahList.clear();
+        idealList.clear();
+        idealAtasList.clear();
+        lebihList.clear();
         mApiService.getDataChartBoys().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -98,6 +109,46 @@ public class ChartFragment extends Fragment {
             }
         });
  }
+
+    private void getChartDataGirls(){
+        usiaList.clear();
+        kurangList.clear();
+        idealBawahList.clear();
+        idealList.clear();
+        idealAtasList.clear();
+        lebihList.clear();
+        mApiService.getDataChartGirls().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()){
+                    try {
+                        JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                        JSONArray dataArray = jsonRESULTS.getJSONArray("data");
+
+                        for (int i = 0; i < dataArray.length(); i++) {
+                            JSONObject dataobj = dataArray.getJSONObject(i);
+                            usiaList.add(dataobj.getString("usia"));
+                            kurangList.add(dataobj.getDouble("kurang"));
+                            idealBawahList.add(dataobj.getDouble("ideal_bawah"));
+                            idealList.add(dataobj.getDouble("ideal"));
+                            idealAtasList.add(dataobj.getDouble("ideal_atas"));
+                            lebihList.add(dataobj.getDouble("lebih"));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    entryData();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+    }
 
  private void entryData() {
         Cartesian cartesian = AnyChart.line();
