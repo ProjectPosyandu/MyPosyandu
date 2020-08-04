@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myposyandu.R;
 import com.example.myposyandu.RecyclerViewAdapter;
+import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
@@ -31,13 +32,19 @@ public class DataBayiFragment extends Fragment {
     private RecyclerView.LayoutManager lmData;
     private List<ModelDataBayi> listData = new ArrayList<>();
 
+    SharedPrefManager sharedPrefManager;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_data_bayi, container, false);
         rvData = root.findViewById(R.id.rvDataBayi);
         lmData = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
-        getDataBayi();
+
+        sharedPrefManager = new SharedPrefManager(getActivity());
+        String id = sharedPrefManager.getSpId();
+
+        getDataBayi(id);
 
         return root;
     }
@@ -66,10 +73,10 @@ public class DataBayiFragment extends Fragment {
 //        prosesRecyclerViewAdapter(root);
 //    }
 
-    public void getDataBayi(){
+    public void getDataBayi(String id){
 
         ApiService ardData = UtilsApi.getAPIService();
-        Call<ResponseModel> tampilData = ardData.ardRetrieveData();
+        Call<ResponseModel> tampilData = ardData.ardRetrieveData(id);
 
         tampilData.enqueue(new Callback<ResponseModel>() {
             @Override

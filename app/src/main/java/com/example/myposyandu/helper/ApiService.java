@@ -48,6 +48,7 @@ public interface ApiService {
     @GET("getChartGirls.php")
     Call<ResponseBody> getDataChartGirls();
 
-    @GET("tampilBayi.php")
-    Call<ResponseModel> ardRetrieveData();
+    @FormUrlEncoded
+    @POST("tampilBayi.php")
+    Call<ResponseModel> ardRetrieveData(@Field("id") String id);
 }
