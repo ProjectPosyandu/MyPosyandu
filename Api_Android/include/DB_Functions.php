@@ -116,10 +116,11 @@ class DB_Functions {
      * Insert data Bayi
      */
 
-    public function simpanBayi($nama_bayi,$tgl_lahir,$jenis_kelamin, $id){
+    public function simpanBayi($nama_bayi,$tgl_lahir,$jenis_kelamin,$foto_bayi, $id){
+        $path = "images/$nama_bayi.jpeg";
 
-        $stmt = $this->conn->prepare("INSERT INTO tb_bayi(nama_bayi, tgl_lahir, jenis_kelamin, id) VALUES(?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $nama_bayi, $tgl_lahir, $jenis_kelamin, $id);
+        $stmt = $this->conn->prepare("INSERT INTO tb_bayi(nama_bayi, tgl_lahir, jenis_kelamin, foto_bayi, id) VALUES(?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $nama_bayi, $tgl_lahir, $jenis_kelamin, $path, $id);
         $result = $stmt->execute();
         $stmt->close();
         // cek jika sudah sukses
@@ -135,10 +136,10 @@ class DB_Functions {
         }
     }
 
-    public function simpanDetailBayi($id_bayi,$berat_bayi,$tinggi_bayi){
+    public function simpanDetailBayi($id_bayi,$usia_bayi,$berat_bayi,$tinggi_bayi){
 
-        $stmt = $this->conn->prepare("INSERT INTO detail_bayi(id_bayi, berat_bayi, tinggi_bayi) VALUES(?, ?, ?)");
-        $stmt->bind_param("sss", $id_bayi, $berat_bayi, $tinggi_bayi);
+        $stmt = $this->conn->prepare("INSERT INTO detail_bayi(id_bayi, usia_bayi, berat_bayi, tinggi_bayi) VALUES(?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $id_bayi, $usia_bayi, $berat_bayi, $tinggi_bayi);
         $result = $stmt->execute();
         $stmt->close();
         // cek jika sudah sukses

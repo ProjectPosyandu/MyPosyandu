@@ -31,6 +31,8 @@ public class CobaActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager lmData;
     private List<ModelDataBayi> listData = new ArrayList<>();
 
+    SharedPrefManager sharedPrefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,10 @@ public class CobaActivity extends AppCompatActivity {
         lmData = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
 
-        getDataBayi();
+        sharedPrefManager = new SharedPrefManager(CobaActivity.this);
+        String id = sharedPrefManager.getSpId();
+
+        getDataBayi(id);
 
 //        getDataFromInternet();
     }
@@ -69,10 +74,10 @@ public class CobaActivity extends AppCompatActivity {
 //        prosesRecyclerViewAdapter();
 //    }
 
-    public void getDataBayi(){
+    public void getDataBayi(String id){
 
         ApiService ardData = UtilsApi.getAPIService();
-        Call<ResponseModel> tampilData = ardData.ardRetrieveData();
+        Call<ResponseModel> tampilData = ardData.ardRetrieveData(id);
 
         tampilData.enqueue(new Callback<ResponseModel>() {
             @Override

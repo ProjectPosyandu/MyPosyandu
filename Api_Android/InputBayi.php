@@ -8,7 +8,9 @@ if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['je
     $nama_bayi = $_POST['nama_bayi'];
     $tgl_lahir = $_POST['tgl_lahir'];
     $jenis_kelamin = $_POST['jenis_kelamin'];
+    $foto_bayi = $_POST['foto_bayi'];
     $id = $_POST['id'];
+    $usia_bayi = "0";
     $berat_bayi = $_POST['berat_bayi'];
     $tinggi_bayi = $_POST['tinggi_bayi'];
     // Cek jika user ada dengan email yang sama
@@ -19,10 +21,11 @@ if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['je
         echo json_encode($response);
     } else {
         // buat user baru
-        $user = $db->simpanBayi($nama_bayi, $tgl_lahir, $jenis_kelamin, $id);
+        $user = $db->simpanBayi($nama_bayi, $tgl_lahir, $jenis_kelamin, $foto_bayi, $id);
         if ($user) {
         	$id_bayi = $user["id_bayi"];
-        	$detail = $db->simpanDetailBayi($id_bayi,$berat_bayi,$tinggi_bayi);
+
+        	$detail = $db->simpanDetailBayi($id_bayi,$usia_bayi,$berat_bayi,$tinggi_bayi);
             // simpan user berhasil
             $response["error"] = FALSE;
             $response["uid"] = $user["id_bayi"];

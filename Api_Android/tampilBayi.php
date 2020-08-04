@@ -1,6 +1,7 @@
 <?php
 require("config.php");
-$perintah = "SELECT * FROM tb_bayi";
+$id = $_POST['id'];
+$perintah = "SELECT * FROM tb_bayi WHERE id = '$id'";
 $eksekusi = mysqli_query($con,$perintah);
 $cek = mysqli_affected_rows($con);
 
