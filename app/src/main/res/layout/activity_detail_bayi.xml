@@ -29,23 +29,93 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/tvNamaBayi"
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Bayi"
-                android:textAlignment="center"
-                android:textSize="30sp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="10dp">
 
-            <TextView
-                android:id="@+id/tvInfoBayi"
+                <TableRow
+                    android:layout_margin="5dp">
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Nama Bayi"
+                        android:textSize="15sp"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tvNamaBayi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_margin="5dp">
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Tanggal Lahir"
+                        android:textSize="15sp"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tvTglLahir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_margin="5dp">
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Jenis Kelamin"
+                        android:textSize="15sp"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tvJenisKelamin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="TextView" />
+                </TableRow>
+            </TableLayout>
+            <Button
+                android:id="@+id/btnChart"
+                android:text="Grafik Perkembangan"
+                android:textColor="#FFF"
+                android:background="@drawable/rec_gradient"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="10dp"
-                android:text="TextView TextView TextView TextView TextView TextView TextView TextView TextView TextView " />
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btnUpdateChart"
+                android:text="Update Grafik"
+                android:textColor="#FFF"
+                android:background="@drawable/rec_gradient"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
