@@ -125,15 +125,22 @@ class DB_Functions {
         $stmt->close();
         // cek jika sudah sukses
         if ($result) {
+            if (file_put_contents($path, base64_decode($foto_bayi))){
+
             $stmt = $this->conn->prepare("SELECT * FROM tb_bayi WHERE nama_bayi = ?");
             $stmt->bind_param("s", $nama_bayi);
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
             return $user;
+
         } else {
             return false;
         }
+    }
+            
+        
+        
     }
 
     public function simpanDetailBayi($id_bayi,$usia_bayi,$berat_bayi,$tinggi_bayi){

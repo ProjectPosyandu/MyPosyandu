@@ -3,6 +3,7 @@ require_once 'include/DB_Functions.php';
 $db = new DB_Functions();
 // json response array
 $response = array("error" => FALSE);
+
 if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['jenis_kelamin']) && isset($_POST['id']) && isset($_POST['berat_bayi']) && isset($_POST['tinggi_bayi'])) {
     // menerima parameter POST 
     $nama_bayi = $_POST['nama_bayi'];

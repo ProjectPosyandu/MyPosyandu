@@ -1,6 +1,8 @@
 package com.example.myposyandu.fragment_ibu;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +22,15 @@ import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
 import com.example.myposyandu.model.ResponseModel;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,17 +61,13 @@ public class DataBayiFragment extends Fragment {
     }
 
     public void getDataBayi(String id){
-
         ApiService ardData = UtilsApi.getAPIService();
-        Call<ResponseModel> tampilData = ardData.ardRetrieveData(id);
-
+        Call<ResponseModel> tampilData = ardData.getDataBayi(id);
         tampilData.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
-
-//                Toast.makeText(getContext(), "Kode : "+kode+"Pesan : "+pesan, Toast.LENGTH_SHORT).show();
 
                 if(pesan.equals("Data tersedia")){
                     status.setVisibility(View.INVISIBLE);
@@ -73,6 +77,7 @@ public class DataBayiFragment extends Fragment {
                     adData = new RecyclerViewAdapter(getContext(), listData);
                     rvData.setAdapter(adData);
                     adData.notifyDataSetChanged();
+
                 }else {
                     status.setVisibility(View.VISIBLE);
                     rvData.setVisibility(View.INVISIBLE);
