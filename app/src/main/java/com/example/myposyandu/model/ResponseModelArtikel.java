@@ -2,10 +2,10 @@ package com.example.myposyandu.model;
 
 import java.util.List;
 
-public class ResponseModel {
+public class ResponseModelArtikel {
     private int kode;
     private String pesan;
-    private List<ModelDataBayi> data;
+    private List<ModelDataArtikel> data;
 
     public int getKode() {
         return kode;
@@ -23,12 +23,11 @@ public class ResponseModel {
         this.pesan = pesan;
     }
 
-    public List<ModelDataBayi> getData() {
+    public List<ModelDataArtikel> getData() {
         return data;
     }
 
-    public void setData(List<ModelDataBayi> data) {
+    public void setData(List<ModelDataArtikel> data) {
         this.data = data;
     }
-
 }

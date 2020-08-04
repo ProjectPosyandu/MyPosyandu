@@ -3,7 +3,7 @@
     package="com.example.myposyandu">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -13,18 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.DetailArtikelActivity"></activity>
         <activity
             android:name=".activity.Main3Activity"
             android:label="@string/title_activity_main3"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.DetailBayiActivity" />
-        <activity android:name=".CobaActivity"></activity>
+        <activity android:name=".CobaActivity" />
         <activity android:name=".activity.TambahBayiActivity" />
         <activity
             android:name=".activity.Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

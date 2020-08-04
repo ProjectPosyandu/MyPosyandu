@@ -1,9 +1,7 @@
 package com.example.myposyandu.helper;
 
-import com.example.myposyandu.model.ModelDataBayi;
 import com.example.myposyandu.model.ResponseModel;
-
-import java.util.List;
+import com.example.myposyandu.model.ResponseModelArtikel;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -50,5 +48,16 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("tampilBayi.php")
     Call<ResponseModel> getDataBayi(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("InputDetailBayi.php")
+    Call<ResponseBody> inputDetailBayi( @Field("id_bayi") String id_bayi,
+                                        @Field("usia_bayi") String usia_bayi,
+                                        @Field("berat_bayi") String berat_bayi,
+                                        @Field("tinggi_bayi") String tinggi_bayi);
+
+    @GET("tampilArtikel.php")
+    Call<ResponseModelArtikel> getDataArtikel();
+
 
 }
