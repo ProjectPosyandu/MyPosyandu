@@ -1,4 +1,4 @@
-package com.example.myposyandu;
+package com.example.myposyandu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +21,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myposyandu.R;
+import com.example.myposyandu.SharedPrefManager;
+import com.example.myposyandu.activity.Main2Activity;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -238,6 +241,8 @@ public class TambahBayiActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
     }
+
+
 
     private void showMessage(String message){
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();

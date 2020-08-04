@@ -70,7 +70,6 @@ public class DataBayiFragment extends Fragment {
 
         ApiService ardData = UtilsApi.getAPIService();
         Call<ResponseModel> tampilData = ardData.ardRetrieveData();
-
         tampilData.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {

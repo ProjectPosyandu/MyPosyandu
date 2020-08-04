@@ -1,4 +1,4 @@
-package com.example.myposyandu;
+package com.example.myposyandu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.internal.Util;
@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.myposyandu.R;
 
 
 public class MainActivity extends AppCompatActivity {

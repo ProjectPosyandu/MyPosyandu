@@ -1,4 +1,4 @@
-package com.example.myposyandu;
+package com.example.myposyandu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.myposyandu.R;
+import com.example.myposyandu.SharedPrefManager;
 
 public class DetailBayiActivity extends AppCompatActivity {
     ImageView ifotoBayi;
