@@ -50,7 +50,7 @@ public interface ApiService {
     Call<ResponseModel> getDataBayi(@Field("id") String id);
 
     @FormUrlEncoded
-<<<<<<< HEAD
+
     @POST("InputDetailBayi.php")
     Call<ResponseBody> inputDetailBayi( @Field("id_bayi") String id_bayi,
                                         @Field("usia_bayi") String usia_bayi,
@@ -59,11 +59,10 @@ public interface ApiService {
 
     @GET("tampilArtikel.php")
     Call<ResponseModelArtikel> getDataArtikel();
-=======
+
     @POST("tampilPerBayi.php")
     Call<ResponseBody> getDataPerBayi(@Field("id") int id);
-
->>>>>>> 6107317f51579a4146c9efffcbb00f43e24c8769
+    
 
 
 }
