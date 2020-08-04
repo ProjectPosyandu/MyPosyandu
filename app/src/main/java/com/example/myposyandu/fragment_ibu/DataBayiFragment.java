@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class DataBayiFragment extends Fragment {
     private RecyclerView.Adapter adData;
     private RecyclerView.LayoutManager lmData;
     private List<ModelDataBayi> listData = new ArrayList<>();
+    TextView status;
 
     SharedPrefManager sharedPrefManager;
 
@@ -38,6 +40,7 @@ public class DataBayiFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_data_bayi, container, false);
         rvData = root.findViewById(R.id.rvDataBayi);
+        status = root.findViewById(R.id.status);
         lmData = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
 
@@ -84,13 +87,20 @@ public class DataBayiFragment extends Fragment {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                Toast.makeText(getContext(), "Kode : "+kode+"Pesan : "+pesan, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Kode : "+kode+"Pesan : "+pesan, Toast.LENGTH_SHORT).show();
 
-                listData = response.body().getData();
+                if(pesan.equals("Data tersedia")){
+                    status.setVisibility(View.INVISIBLE);
+                    rvData.setVisibility(View.VISIBLE);
 
-                adData = new RecyclerViewAdapter(getContext(), listData);
-                rvData.setAdapter(adData);
-                adData.notifyDataSetChanged();
+                    listData = response.body().getData();
+                    adData = new RecyclerViewAdapter(getContext(), listData);
+                    rvData.setAdapter(adData);
+                    adData.notifyDataSetChanged();
+                }else {
+                    status.setVisibility(View.VISIBLE);
+                    rvData.setVisibility(View.INVISIBLE);
+                }
 
             }
 
