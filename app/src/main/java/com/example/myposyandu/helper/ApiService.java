@@ -39,7 +39,6 @@ public interface ApiService {
                                         @Field("tinggi_bayi") String tinggi_bayi);
 
     @FormUrlEncoded
-    @POST("tampilAkun.php")
     Call<ResponseBody> tampilAkunRequest(@Field("id") String id);
 
     @GET("getChartBoys.php")
@@ -50,5 +49,6 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("tampilBayi.php")
-    Call<ResponseModel> ardRetrieveData(@Field("id") String id);
+    Call<ResponseModel> getDataBayi(@Field("id") String id);
+
 }

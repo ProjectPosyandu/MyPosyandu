@@ -15,6 +15,7 @@ if($cek > 0){
         $D["nama_bayi"] = $ambil ->nama_bayi;
         $D["jenis_kelamin"] = $ambil ->jenis_kelamin;
         $D["tgl_lahir"] = $ambil ->tgl_lahir;
+        $D["foto_bayi"] = $ambil ->foto_bayi;
         
         array_push($response["data"], $D);
     }

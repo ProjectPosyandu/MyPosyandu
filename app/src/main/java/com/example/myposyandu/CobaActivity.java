@@ -77,7 +77,7 @@ public class CobaActivity extends AppCompatActivity {
     public void getDataBayi(String id){
 
         ApiService ardData = UtilsApi.getAPIService();
-        Call<ResponseModel> tampilData = ardData.ardRetrieveData(id);
+        Call<ResponseModel> tampilData = ardData.getDataBayi(id);
 
         tampilData.enqueue(new Callback<ResponseModel>() {
             @Override

@@ -103,8 +103,6 @@ public class TambahBayiActivity extends AppCompatActivity {
                 String berat_bayi = etBB.getText().toString().trim();
                 String tinggi_bayi = etTB.getText().toString().trim();
                 String id = sharedPrefManager.getSpId();
-//                String id_u = tvId.getText().toString().trim();
-//                int id_user=Integer.parseInt(id_u);
 
                 if(cowok.isChecked()){
                     jenis_kelamin = "Laki-Laki";
@@ -175,7 +173,10 @@ public class TambahBayiActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private void inputBayi(final String nama_bayi, final String tgl_lahir, final String jenis_kelamin, final String foto_bayi, final String id, final String berat_bayi, final String tinggi_bayi) {
+    private void inputBayi(final String nama_bayi, final String tgl_lahir,
+                           final String jenis_kelamin, final String foto_bayi,
+                           final String id, final String berat_bayi, final String tinggi_bayi) {
+
         mApiService.inputBayiRequest(nama_bayi,tgl_lahir,jenis_kelamin, foto_bayi, id, berat_bayi, tinggi_bayi)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
