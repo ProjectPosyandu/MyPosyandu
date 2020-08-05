@@ -80,7 +80,7 @@ public class DetailBayiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.container_fragment,
-                        new ChartFragment()).commit();
+                        new TambahDataChartFragment()).commit();
             }
         });
 

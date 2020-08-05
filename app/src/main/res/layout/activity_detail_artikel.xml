@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="isi isi"
                 android:layout_marginTop="20dp"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textColor="#000" />
 
             <TextView
