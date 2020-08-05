@@ -39,18 +39,19 @@ public interface ApiService {
     @FormUrlEncoded
     Call<ResponseBody> tampilAkunRequest(@Field("id") String id);
 
-    @GET("getChartBoys.php")
-    Call<ResponseBody> getDataChartBoys();
+    @FormUrlEncoded
+    @POST("getChartBoys.php")
+    Call<ResponseBody> getDataChartBoys(@Field("id_bayi") int id);
 
-    @GET("getChartGirls.php")
-    Call<ResponseBody> getDataChartGirls();
+    @FormUrlEncoded
+    @POST("getChartGirls.php")
+    Call<ResponseBody> getDataChartGirls(@Field("id_bayi") int id);
 
     @FormUrlEncoded
     @POST("tampilBayi.php")
     Call<ResponseModel> getDataBayi(@Field("id") String id);
 
     @FormUrlEncoded
-
     @POST("InputDetailBayi.php")
     Call<ResponseBody> inputDetailBayi( @Field("id_bayi") String id_bayi,
                                         @Field("usia_bayi") String usia_bayi,
@@ -60,6 +61,7 @@ public interface ApiService {
     @GET("tampilArtikel.php")
     Call<ResponseModelArtikel> getDataArtikel();
 
+    @FormUrlEncoded
     @POST("tampilPerBayi.php")
     Call<ResponseBody> getDataPerBayi(@Field("id") int id);
     

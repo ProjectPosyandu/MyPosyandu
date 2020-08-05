@@ -11,7 +11,10 @@ if (isset($_POST['id_bayi']) && isset($_POST['usia_bayi']) && isset($_POST['bera
     $berat_bayi = $_POST['berat_bayi'];
     $tinggi_bayi = $_POST['tinggi_bayi'];
     
-    $user = $db->simpanDetailBayi($id_bayi,$usia_bayi,$berat_bayi,$tinggi_bayi);
+    $usia = $db->isUsiaExisted($usia_bayi);
+    if ($usia != false){
+        $id_usia = $usia["id_usia"];
+        $user = $db->simpanDetailBayi($id_bayi,$id_usia,$berat_bayi,$tinggi_bayi);
         if ($user) {
             // simpan user berhasil
             $response["error"] = FALSE;
@@ -24,6 +27,13 @@ if (isset($_POST['id_bayi']) && isset($_POST['usia_bayi']) && isset($_POST['bera
             $response["error_msg"] = "Terjadi kesalahan saat input";
             echo json_encode($response);
         }
+    }else {
+            // gagal menyimpan user
+            $response["error"] = TRUE;
+            $response["error_msg"] = "Terjadi kesalahan saat input";
+            echo json_encode($response);
+        }
+    
 } else {
     $response["error"] = TRUE;
     $response["error_msg"] = "Parameter ada yang kurang";

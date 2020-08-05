@@ -26,16 +26,27 @@ if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['je
         $kode = "BY".($nourut + 1);
         // buat user baru
         $user = $db->simpanBayi($nama_bayi, $tgl_lahir, $jenis_kelamin, $foto_bayi, $id, $kode);
-        if ($user) {
-        	$id_bayi = $user["id_bayi"];
 
-        	$detail = $db->simpanDetailBayi($id_bayi,$usia_bayi,$berat_bayi,$tinggi_bayi);
-            // simpan user berhasil
-            $response["error"] = FALSE;
-            $response["uid"] = $user["id_bayi"];
-            $response["user"]["id_bayi"] = $user["id_bayi"];
-            $response["user"]["id"] = $user["id"];
-            echo json_encode($response);
+        if ($user) {
+            $id_bayi = $user["id_bayi"];
+            $usia = $db->isUsiaExisted($usia_bayi);
+
+            if ($usia != false) {
+                $id_usia = $usia["id_usia"];
+                $detail = $db->simpanDetailBayi($id_bayi,$id_usia,$berat_bayi,$tinggi_bayi);
+                // simpan user berhasil
+                $response["error"] = FALSE;
+                $response["uid"] = $user["id_bayi"];
+                $response["user"]["id_bayi"] = $user["id_bayi"];
+                $response["user"]["id"] = $user["id"];
+                echo json_encode($response);
+            }else{
+                // gagal menyimpan user
+                $response["error"] = TRUE;
+                $response["error_msg"] = "Terjadi kesalahan saat input";
+                echo json_encode($response);
+            }
+            
         } else {
             // gagal menyimpan user
             $response["error"] = TRUE;

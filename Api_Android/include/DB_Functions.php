@@ -143,21 +143,44 @@ class DB_Functions {
         
     }
 
-    public function simpanDetailBayi($id_bayi,$usia_bayi,$berat_bayi,$tinggi_bayi){
+    public function simpanDetailBayi($id_bayi,$id_usia,$berat_bayi,$tinggi_bayi){
 
-        $stmt = $this->conn->prepare("INSERT INTO detail_bayi(id_bayi, usia_bayi, berat_bayi, tinggi_bayi) VALUES(?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $id_bayi, $usia_bayi, $berat_bayi, $tinggi_bayi);
+        $stmt = $this->conn->prepare("INSERT INTO tb_detail_bayi(id_bayi, id_usia, berat_bayi, tinggi_bayi) VALUES(?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $id_bayi, $id_usia, $berat_bayi, $tinggi_bayi);
         $result = $stmt->execute();
         $stmt->close();
         // cek jika sudah sukses
         if ($result) {
-            $stmt = $this->conn->prepare("SELECT * FROM detail_bayi WHERE id_bayi = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM tb_detail_bayi WHERE id_bayi = ?");
             $stmt->bind_param("s", $id_bayi);
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
             return $user;
         } else {
+            return false;
+        }
+    }
+
+    public function isUsiaExisted($usia_bayi){
+        $stmt = $this->conn->prepare("SELECT id_usia from tb_usia WHERE usia = ?");
+        $stmt->bind_param("s", $usia_bayi);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $stmt->close();
+            // user telah ada 
+            $stmt = $this->conn->prepare("SELECT * from tb_usia WHERE usia = ?");
+            $stmt->bind_param("s", $usia_bayi);
+            $stmt->execute();
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            
+            return $user;
+        } else {
+            // user belum ada 
+            $stmt->close();
             return false;
         }
     }
