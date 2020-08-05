@@ -116,11 +116,11 @@ class DB_Functions {
      * Insert data Bayi
      */
 
-    public function simpanBayi($nama_bayi,$tgl_lahir,$jenis_kelamin,$foto_bayi, $id){
+    public function simpanBayi($nama_bayi,$tgl_lahir,$jenis_kelamin,$foto_bayi, $id, $kode){
         $path = "images/$nama_bayi.jpeg";
 
-        $stmt = $this->conn->prepare("INSERT INTO tb_bayi(nama_bayi, tgl_lahir, jenis_kelamin, foto_bayi, id) VALUES(?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $nama_bayi, $tgl_lahir, $jenis_kelamin, $path, $id);
+        $stmt = $this->conn->prepare("INSERT INTO tb_bayi(id_bayi,nama_bayi, tgl_lahir, jenis_kelamin, foto_bayi, id) VALUES(?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $id_bayi, $nama_bayi, $tgl_lahir, $jenis_kelamin, $path, $id);
         $result = $stmt->execute();
         $stmt->close();
         // cek jika sudah sukses
@@ -190,6 +190,30 @@ class DB_Functions {
         }
     }
 
+
+    public function getDataPerBayi($id) {
+ 
+        $stmt = $this->conn->prepare("SELECT * FROM tb_bayi WHERE id_bayi = ?");
+        $stmt->bind_param("s", $id);
+        if ($stmt->execute()) {
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user; 
+        } else {
+            return false;
+        }
+    }
+
+    public function createIdBayi(){
+        $stmt = $this->conn->prepare("SELECT MAX(id_bayi) as idbayi FROM tb_bayi");
+        if ($stmt->execute()) {
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user; 
+        } else {
+            return false;
+        }
+    }
 
 
 }

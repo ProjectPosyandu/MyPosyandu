@@ -21,8 +21,11 @@ if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['je
         $response["error_msg"] = "bayi telah ada dengan nama " . $nama_bayi;
         echo json_encode($response);
     } else {
+        $kode_x = $db->createIdBayi();
+        $nourut = substr($kode_x["idbayi"], 3, 4);
+        $kode = "BY".($nourut + 1);
         // buat user baru
-        $user = $db->simpanBayi($nama_bayi, $tgl_lahir, $jenis_kelamin, $foto_bayi, $id);
+        $user = $db->simpanBayi($nama_bayi, $tgl_lahir, $jenis_kelamin, $foto_bayi, $id, $kode);
         if ($user) {
         	$id_bayi = $user["id_bayi"];
 

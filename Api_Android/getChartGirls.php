@@ -1,8 +1,8 @@
 <?php
-require "cofig.php";
+require "config.php";
 
 $query = "SELECT * FROM tb_usia
-			JOIN tb_kriteria_bb_pr ON tb_usia.id_usia=tb_kriteria_bb_laki.id_usia";
+			JOIN tb_kriteria_bb_pr ON tb_usia.id_usia=tb_kriteria_bb_pr.id_usia";
 
 	$hasil = mysqli_query($con,$query);
 	if (mysqli_num_rows($hasil)>0) {
