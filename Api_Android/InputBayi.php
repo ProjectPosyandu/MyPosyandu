@@ -10,7 +10,7 @@ if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['je
     $tgl_lahir = $_POST['tgl_lahir'];
     $jenis_kelamin = $_POST['jenis_kelamin'];
     $foto_bayi = $_POST['foto_bayi'];
-    $id = $_POST['id'];
+    $id = $_POST['id']; //user
     $usia_bayi = "0";
     $berat_bayi = $_POST['berat_bayi'];
     $tinggi_bayi = $_POST['tinggi_bayi'];
@@ -21,13 +21,11 @@ if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['je
         $response["error_msg"] = "bayi telah ada dengan nama " . $nama_bayi;
         echo json_encode($response);
     } else {
-        $kode_x = $db->createIdBayi();
-        $nourut = substr($kode_x["idbayi"], 3, 4);
-        $kode = "BY".($nourut + 1);
+        $idbayi = $db->createIdBayi();
         // buat user baru
-        $user = $db->simpanBayi($nama_bayi, $tgl_lahir, $jenis_kelamin, $foto_bayi, $id, $kode);
+        $user = $db->simpanBayi($nama_bayi, $tgl_lahir, $jenis_kelamin, $foto_bayi, $id, $idbayi);
 
-        if ($user) {
+        if ($user != false) {
             $id_bayi = $user["id_bayi"];
             $usia = $db->isUsiaExisted($usia_bayi);
 

@@ -228,14 +228,24 @@ class DB_Functions {
     }
 
     public function createIdBayi(){
-        $stmt = $this->conn->prepare("SELECT MAX(id_bayi) as idbayi FROM tb_bayi");
-        if ($stmt->execute()) {
-            $user = $stmt->get_result()->fetch_assoc();
+
+        $stmt = $this->conn->prepare("SELECT RIGHT(id_bayi, 3) as idbayi FROM tb_bayi ORDER BY id_bayi DESC LIMIT 1");
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0){
             $stmt->close();
-            return $user; 
-        } else {
-            return false;
+            $stmt = $this->conn->prepare("SELECT RIGHT(id_bayi, 3) as idbayi FROM tb_bayi ORDER BY id_bayi DESC LIMIT 1");
+            $stmt->execute();
+            $user = $stmt->get_result()->fetch_assoc();
+            $kode = intval($user["idbayi"]) + 1;
+        }else{
+            $kode = 1;
         }
+
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); 
+        $kodejadi = "BY".$kodemax;  
+        return $kodejadi;
+
     }
 
 
