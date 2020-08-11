@@ -8,11 +8,13 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myposyandu.R;
@@ -25,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -34,6 +38,7 @@ import retrofit2.Response;
 public class TambahDataChartFragment extends Fragment {
     EditText etUsia, etBB, etTB;
     Button btnTambah;
+    TextView tgl;
 
     Context mContext;
     ProgressDialog loading;
@@ -69,6 +74,19 @@ public class TambahDataChartFragment extends Fragment {
         etBB = view.findViewById(R.id.etBerat);
         etTB = view.findViewById(R.id.etTinggi);
         btnTambah = view.findViewById(R.id.btnTambah);
+        tgl =view.findViewById(R.id.tgl);
+    }
+
+    private void ambilTanggal(){
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => "+c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+        // formattedDate have current date/time
+        Toast.makeText(mContext, formattedDate, Toast.LENGTH_SHORT).show();
+
+        tgl.setText(formattedDate);
     }
 
     private void inputData(final String id_bayi, final String usia_bayi, final String berat_bayi, final String tinggi_bayi){

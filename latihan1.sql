@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2020 at 06:11 AM
+-- Generation Time: Aug 11, 2020 at 01:55 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `detail_bayi` (
-  `id_bayi` int(4) NOT NULL,
+  `id_bayi` varchar(7) NOT NULL,
   `usia_bayi` int(3) NOT NULL,
   `berat_bayi` float NOT NULL,
   `tinggi_bayi` int(3) NOT NULL
@@ -48,6 +48,14 @@ CREATE TABLE `tb_artikel` (
   `penulis` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_artikel`
+--
+
+INSERT INTO `tb_artikel` (`id_artikel`, `judul_artikel`, `isi_artikel`, `penulis`) VALUES
+(1, 'JUDUL ARTIKEL 1', 'Artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel ', 'Kader 1'),
+(2, 'Posyandu Bantu Tingkatkan Kesehatan Balita', 'Kesehatan merupakan salah satu nikmat terbesar yang jarang disyukuri, padahal kesehatan adalah pondasi utama untuk menjalani kehidupan.Mengingat kesehatan sangat penting bagi setiap orang, Rumah Zakat hadir memberikan layanan siaga Posyandu di Desa Berdaya Sahkuda Bayu, Sumatera Utara dengan berbagai program. Di antaranya adalah dengan pemberian makanan tambahan, pemberian vaksin rutin, penimbangan balita, pengobatan untuk lansia, dan berbagai pelatihan serta penyuluhan untuk masyarakat. ', 'Kader 1');
+
 -- --------------------------------------------------------
 
 --
@@ -55,12 +63,52 @@ CREATE TABLE `tb_artikel` (
 --
 
 CREATE TABLE `tb_bayi` (
-  `id_bayi` int(4) NOT NULL,
+  `id_bayi` varchar(7) NOT NULL,
   `nama_bayi` varchar(50) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `jenis_kelamin` varchar(10) NOT NULL,
   `foto_bayi` text NOT NULL,
   `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_bayi`
+--
+
+INSERT INTO `tb_bayi` (`id_bayi`, `nama_bayi`, `tgl_lahir`, `jenis_kelamin`, `foto_bayi`, `id`) VALUES
+('BY1', 'bayi', '2020-08-01', 'Laki-Laki', 'images/bayi.jpeg', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_detail_bayi`
+--
+
+CREATE TABLE `tb_detail_bayi` (
+  `id_bayi` varchar(7) NOT NULL,
+  `id_usia` varchar(7) CHARACTER SET utf8 NOT NULL,
+  `berat_bayi` float NOT NULL,
+  `tinggi_bayi` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_detail_bayi`
+--
+
+INSERT INTO `tb_detail_bayi` (`id_bayi`, `id_usia`, `berat_bayi`, `tinggi_bayi`) VALUES
+('BY1', 'US001', 3, 45);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jadwal`
+--
+
+CREATE TABLE `tb_jadwal` (
+  `id_jadwal` varchar(5) NOT NULL,
+  `nama_imunisasi` varchar(30) NOT NULL,
+  `tgl_imunisasi` date NOT NULL,
+  `waktu` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -418,6 +466,19 @@ ALTER TABLE `tb_bayi`
   ADD KEY `id` (`id`);
 
 --
+-- Indexes for table `tb_detail_bayi`
+--
+ALTER TABLE `tb_detail_bayi`
+  ADD KEY `id_usia` (`id_usia`),
+  ADD KEY `id_bayi` (`id_bayi`);
+
+--
+-- Indexes for table `tb_jadwal`
+--
+ALTER TABLE `tb_jadwal`
+  ADD PRIMARY KEY (`id_jadwal`);
+
+--
 -- Indexes for table `tb_kriteria_bb_laki`
 --
 ALTER TABLE `tb_kriteria_bb_laki`
@@ -451,12 +512,7 @@ ALTER TABLE `tb_usia`
 -- AUTO_INCREMENT for table `tb_artikel`
 --
 ALTER TABLE `tb_artikel`
-  MODIFY `id_artikel` int(5) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tb_bayi`
---
-ALTER TABLE `tb_bayi`
-  MODIFY `id_bayi` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_artikel` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
@@ -477,6 +533,13 @@ ALTER TABLE `detail_bayi`
 --
 ALTER TABLE `tb_bayi`
   ADD CONSTRAINT `tb_bayi_ibfk_1` FOREIGN KEY (`id`) REFERENCES `tb_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tb_detail_bayi`
+--
+ALTER TABLE `tb_detail_bayi`
+  ADD CONSTRAINT `tb_detail_bayi_ibfk_1` FOREIGN KEY (`id_bayi`) REFERENCES `tb_bayi` (`id_bayi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_detail_bayi_ibfk_2` FOREIGN KEY (`id_usia`) REFERENCES `tb_usia` (`id_usia`);
 
 --
 -- Constraints for table `tb_kriteria_bb_laki`
