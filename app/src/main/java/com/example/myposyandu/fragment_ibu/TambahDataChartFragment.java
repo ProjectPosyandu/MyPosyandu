@@ -40,6 +40,12 @@ public class TambahDataChartFragment extends Fragment {
     Button btnTambah;
     TextView tgl;
 
+    int hour, minute, mYear,mMonth, mDay;
+    static final int TIME_DIALOG_ID = 0;
+    static final int DATE_DIALOG_ID = 1;
+    private String[] arrMonth = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+
+
     Context mContext;
     ProgressDialog loading;
     ApiService mApiService;
@@ -52,8 +58,16 @@ public class TambahDataChartFragment extends Fragment {
 
         inItComponents(view);
 
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
         sharedPrefManager = new SharedPrefManager(getActivity());
         String id_bayi = sharedPrefManager.getSpId();
+        String tgl_lahir = sharedPrefManager.getSpTgl();
+
+        tgl.setText(tgl_lahir);
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,18 +89,6 @@ public class TambahDataChartFragment extends Fragment {
         etTB = view.findViewById(R.id.etTinggi);
         btnTambah = view.findViewById(R.id.btnTambah);
         tgl =view.findViewById(R.id.tgl);
-    }
-
-    private void ambilTanggal(){
-        Calendar c = Calendar.getInstance();
-        System.out.println("Current time => "+c.getTime());
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = df.format(c.getTime());
-        // formattedDate have current date/time
-        Toast.makeText(mContext, formattedDate, Toast.LENGTH_SHORT).show();
-
-        tgl.setText(formattedDate);
     }
 
     private void inputData(final String id_bayi, final String usia_bayi, final String berat_bayi, final String tinggi_bayi){
