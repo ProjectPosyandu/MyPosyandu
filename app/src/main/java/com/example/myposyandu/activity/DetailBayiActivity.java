@@ -41,9 +41,9 @@ public class DetailBayiActivity extends AppCompatActivity {
 
     private void getIncomingExtra(){
         String jk = getIntent().getStringExtra("jenis_kelamin");
-        int id_bayi = getIntent().getIntExtra("id_bayi", 0);
+        String id_bayi = getIntent().getStringExtra("id_bayi");
         sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, jk);
-        sharedPrefManager.saveSPInt(sharedPrefManager.SP_ID_BAYI, id_bayi);
+        sharedPrefManager.saveSPString(sharedPrefManager.SP_ID_BAYI, id_bayi);
 
     }
 

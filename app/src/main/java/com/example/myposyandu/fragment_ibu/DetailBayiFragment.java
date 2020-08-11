@@ -64,7 +64,7 @@ public class DetailBayiFragment extends Fragment {
         btnChart = view.findViewById(R.id.btnChart);
         btnUpdate = view.findViewById(R.id.btnUpdateChart);
 
-        int id_bayi = sharedPrefManager.getSpIdBayi();
+        String id_bayi = sharedPrefManager.getSpIdBayi();
         loading = ProgressDialog.show(context, null, "Harap Tunggu...", true, false);
         getData(id_bayi);
 
@@ -87,7 +87,7 @@ public class DetailBayiFragment extends Fragment {
         return view;
     }
 
-    private void getData(int id){
+    private void getData(String id){
         mApiService.getDataPerBayi(id)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override

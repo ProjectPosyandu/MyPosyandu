@@ -3,10 +3,10 @@ package com.example.myposyandu.model;
 import java.util.List;
 
 public class ModelDataBayi {
-    private int id_bayi;
-    private String nama_bayi,tgl_lahir, jenis_kelamin, foto_bayi;
+//    private int id_bayi;
+    private String id_bayi,nama_bayi,tgl_lahir, jenis_kelamin, foto_bayi;
 
-    public ModelDataBayi(int id_bayi, String nama_bayi, String tgl_lahir, String jenis_kelamin, String foto_bayi) {
+    public ModelDataBayi(String id_bayi, String nama_bayi, String tgl_lahir, String jenis_kelamin, String foto_bayi) {
         this.id_bayi = id_bayi;
         this.nama_bayi = nama_bayi;
         this.tgl_lahir = tgl_lahir;
@@ -14,11 +14,11 @@ public class ModelDataBayi {
         this.foto_bayi = foto_bayi;
     }
 
-    public int getId_bayi() {
+    public String getId_bayi() {
         return id_bayi;
     }
 
-    public void setId_bayi(int id_bayi) {
+    public void setId_bayi(String id_bayi) {
         this.id_bayi = id_bayi;
     }
 

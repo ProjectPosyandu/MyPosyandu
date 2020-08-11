@@ -60,6 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ctx, DetailBayiActivity.class);
+                intent.putExtra("id_bayi", dm.getId_bayi());
                 intent.putExtra("nama_bayi", dm.getNama_bayi());
                 intent.putExtra("jenis_kelamin", dm.getJenis_kelamin());
                 intent.putExtra("tgl_lahir", dm.getTgl_lahir());

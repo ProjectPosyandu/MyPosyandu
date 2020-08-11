@@ -62,7 +62,7 @@ public class ChartFragment extends Fragment {
         mContext = getActivity();
         mApiService = UtilsApi.getAPIService();
         sharedPrefManager = new SharedPrefManager(getActivity());
-        int id_bayi = sharedPrefManager.getSpIdBayi();
+        String id_bayi = sharedPrefManager.getSpIdBayi();
         String jk = sharedPrefManager.getSpJk();
         beratBayi.clear();
         usiaList.clear();
@@ -79,7 +79,7 @@ public class ChartFragment extends Fragment {
         return root;
     }
 
-    private void getChartDataBoys(int id_bayi){
+    private void getChartDataBoys(String id_bayi){
         mApiService.getDataChartBoys(id_bayi).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -120,7 +120,7 @@ public class ChartFragment extends Fragment {
         });
  }
 
-    private void getChartDataGirls(int id_bayi){
+    private void getChartDataGirls(String id_bayi){
         mApiService.getDataChartGirls(id_bayi).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
