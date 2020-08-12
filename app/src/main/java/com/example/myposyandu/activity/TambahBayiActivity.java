@@ -157,7 +157,6 @@ public class TambahBayiActivity extends AppCompatActivity {
                 /**Method ini dipanggil saat kita selesai memilih tanggal di DatePicker
                  * Set Calendar untuk menampung tanggal yang dipilih */
                 Calendar newDate = Calendar.getInstance();
-//                newDate.set(year, monthOfYear, dayOfMonth);
                 newDate.set(year, monthOfYear, dayOfMonth);
 
                 /**Update TextView dengan tanggal yang kita pilih */

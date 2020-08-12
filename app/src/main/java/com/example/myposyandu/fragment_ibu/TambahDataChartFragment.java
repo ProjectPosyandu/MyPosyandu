@@ -1,5 +1,6 @@
 package com.example.myposyandu.fragment_ibu;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -22,13 +23,18 @@ import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.activity.DetailBayiActivity;
 import com.example.myposyandu.activity.Main2Activity;
 import com.example.myposyandu.helper.ApiService;
+import com.example.myposyandu.helper.UtilsApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -36,14 +42,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TambahDataChartFragment extends Fragment {
-    EditText etUsia, etBB, etTB;
+    EditText etBB, etTB;
     Button btnTambah;
-    TextView tgl;
+    TextView tgl, cek;
 
-    int hour, minute, mYear,mMonth, mDay;
-    static final int TIME_DIALOG_ID = 0;
-    static final int DATE_DIALOG_ID = 1;
-    private String[] arrMonth = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    String tglLahir, tglSekarang, hasil;
+    private DatePickerDialog datePickerDialog;
+    private SimpleDateFormat dateFormatter;
 
 
     Context mContext;
@@ -57,38 +62,71 @@ public class TambahDataChartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tambah_data_chart, container, false);
 
         inItComponents(view);
-
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
-        sharedPrefManager = new SharedPrefManager(getActivity());
-        String id_bayi = sharedPrefManager.getSpId();
-        String tgl_lahir = sharedPrefManager.getSpTgl();
-
-        tgl.setText(tgl_lahir);
+        hitungUsia();
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loading = ProgressDialog.show(mContext, null, "Harap Tunggu...", true, false);
-                String usia_bayi = etUsia.getText().toString().trim();
+                sharedPrefManager = new SharedPrefManager(getActivity());
+                String id_bayi = sharedPrefManager.getSpIdBayi();
+                String usia_bayi = tgl.getText().toString().trim();
                 String berat_bayi = etBB.getText().toString().trim();
                 String tinggi_bayi = etTB.getText().toString().trim();
 
-                inputData(id_bayi, usia_bayi, berat_bayi, tinggi_bayi);
+                if ( id_bayi.isEmpty() || usia_bayi.isEmpty() || berat_bayi.isEmpty() || tinggi_bayi.isEmpty()){
+                    showMessage("Field belum terisi. Mohon lengkapi semua field isian diatas");
+                }else {
+                    inputData(id_bayi, usia_bayi, berat_bayi, tinggi_bayi);
+                }
             }
         });
         return view;
     }
 
     private void inItComponents(View view){
-        etUsia = view.findViewById(R.id.etUsia);
+        mContext  = getContext();
+        mApiService = UtilsApi.getAPIService();
         etBB = view.findViewById(R.id.etBerat);
         etTB = view.findViewById(R.id.etTinggi);
         btnTambah = view.findViewById(R.id.btnTambah);
         tgl =view.findViewById(R.id.tgl);
+        cek = view.findViewById(R.id.bulan);
+    }
+
+    private void hitungUsia() {
+        //hitung usia
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        Calendar tglIni = Calendar.getInstance();
+
+        sharedPrefManager = new SharedPrefManager(getContext());
+        tglLahir = sharedPrefManager.getSpTgl();
+        tglSekarang = dateFormatter.format(tglIni.getTime());
+        DateFormat dateAwal = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateAkhir = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date tglAwal = dateAwal.parse(tglLahir);
+            Date tglAkhir = dateAkhir.parse(tglSekarang);
+
+            Date TGLAwal = tglAwal;
+            Date TGLAkhir = tglAkhir;
+            Calendar cal1 = Calendar.getInstance();
+            cal1.setTime(TGLAwal);
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(TGLAkhir);
+
+            hasil = String.valueOf(daysBetween(cal1, cal2));
+
+            Log.d("Tanggal Awal",tglLahir);
+            Log.d("Tanggal Akhir",tglSekarang);
+            Log.d("Selisih",hasil);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        tgl.setText(hasil);
+
     }
 
     private void inputData(final String id_bayi, final String usia_bayi, final String berat_bayi, final String tinggi_bayi){
@@ -102,7 +140,7 @@ public class TambahDataChartFragment extends Fragment {
                             try {
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());
                                 if (jsonRESULTS.getString("error").equals("false")){
-                                    showMessage("Data Bayi telah ditambahkan");
+                                    showMessage("Update grafik telah dilakukan");
                                     Intent intent = new Intent(mContext, DetailBayiActivity.class);
                                     getContext().startActivity(intent);
                                 } else {
@@ -130,5 +168,15 @@ public class TambahDataChartFragment extends Fragment {
 
     private void showMessage(String message){
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private static long daysBetween(Calendar tanggalAwal, Calendar tanggalAkhir) {
+        long lama = 0;
+        Calendar tanggal = (Calendar) tanggalAwal.clone();
+        while (tanggal.before(tanggalAkhir)) {
+            tanggal.add(Calendar.DAY_OF_MONTH, 1);
+            lama++;
+        }
+        return lama/30;
     }
 }

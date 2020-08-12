@@ -225,7 +225,7 @@ public class ChartFragment extends Fragment {
          series5.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
 
          Line series6 = cartesian.line(series6Mapping);
-         series6.name("Lebih");
+         series6.name("Data Bayi");
          series6.hovered().markers().enabled(true);
          series6.hovered().markers().type(MarkerType.CIRCLE).size(4d);
          series6.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
