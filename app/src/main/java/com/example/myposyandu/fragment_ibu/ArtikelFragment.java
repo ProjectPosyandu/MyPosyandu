@@ -39,7 +39,7 @@ public class ArtikelFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_artikel, container, false);
         rvArtikel = root.findViewById(R.id.rvArtikel);
-        status = root.findViewById(R.id.status);
+        status = root.findViewById(R.id.statusArtikel);
         lmArtikel = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvArtikel.setLayoutManager(lmArtikel);
 
@@ -57,10 +57,18 @@ public class ArtikelFragment extends Fragment {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                listData = response.body().getData();
-                adArtikel = new ArtikelAdapter(getContext(), listData);
-                rvArtikel.setAdapter(adArtikel);
-                adArtikel.notifyDataSetChanged();
+                if(pesan.equals("Data tersedia")){
+                    status.setVisibility(View.INVISIBLE);
+                    rvArtikel.setVisibility(View.VISIBLE);
+
+                    listData = response.body().getData();
+                    adArtikel = new ArtikelAdapter(getContext(), listData);
+                    rvArtikel.setAdapter(adArtikel);
+                    adArtikel.notifyDataSetChanged();
+                }else {
+                    status.setVisibility(View.VISIBLE);
+                    rvArtikel.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override

@@ -37,7 +37,7 @@ public class JadwalFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_jadwal, container, false);
         rvData = root.findViewById(R.id.rvJadwalImunisasi1);
-        status = root.findViewById(R.id.statusJadwal2);
+        status = root.findViewById(R.id.statusJadwal1);
         lmData = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
 

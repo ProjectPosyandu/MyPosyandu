@@ -115,7 +115,7 @@ public class TambahArtikelFragment extends Fragment {
         mApiService = UtilsApi.getAPIService();
         judul = view.findViewById(R.id.etJudulArtikel);
         isi = view.findViewById(R.id.etIsiArtikel);
-        btnTambah  =view.findViewById(R.id.btnTambahArtikel);
+        btnTambah  =view.findViewById(R.id.btnSimpanArtikel);
 
     }
 

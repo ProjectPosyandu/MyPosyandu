@@ -21,7 +21,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/status"
+        android:id="@+id/statusArtikel"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="60dp"
