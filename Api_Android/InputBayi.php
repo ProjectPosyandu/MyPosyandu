@@ -15,6 +15,7 @@ if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['je
     $berat_bayi = $_POST['berat_bayi'];
     $tinggi_bayi = $_POST['tinggi_bayi'];
     // Cek jika user ada dengan email yang sama
+
     if ($db->isBayiExisted($nama_bayi)) {
         // user telah ada
         $response["error"] = TRUE;
@@ -41,7 +42,7 @@ if (isset($_POST['nama_bayi']) && isset($_POST['tgl_lahir']) && isset($_POST['je
             }else{
                 // gagal menyimpan user
                 $response["error"] = TRUE;
-                $response["error_msg"] = "Terjadi kesalahan saat input";
+                $response["error_msg"] = "Terjadi kesalahan saat input 2";
                 echo json_encode($response);
             }
             

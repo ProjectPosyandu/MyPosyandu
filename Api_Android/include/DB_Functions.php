@@ -116,7 +116,7 @@ class DB_Functions {
      * Insert data Bayi
      */
 
-    public function simpanBayi($nama_bayi,$tgl_lahir,$jenis_kelamin,$foto_bayi, $id, $kode){
+    public function simpanBayi($nama_bayi,$tgl_lahir,$jenis_kelamin,$foto_bayi,$id,$id_bayi){
         $path = "images/$nama_bayi.jpeg";
 
         $stmt = $this->conn->prepare("INSERT INTO tb_bayi(id_bayi,nama_bayi, tgl_lahir, jenis_kelamin, foto_bayi, id) VALUES(?, ?, ?, ?, ?, ?)");
@@ -153,6 +153,44 @@ class DB_Functions {
         if ($result) {
             $stmt = $this->conn->prepare("SELECT * FROM tb_detail_bayi WHERE id_bayi = ?");
             $stmt->bind_param("s", $id_bayi);
+            $stmt->execute();
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user;
+        } else {
+            return false;
+        }
+    }
+
+    public function simpanJadwal($id_jadwal,$nama_jadwal,$tanggal,$waktu){
+        $status = "belum";
+        $stmt = $this->conn->prepare("INSERT INTO tb_jadwal(id_jadwal, nama_imunisasi, tgl_imunisasi, waktu, status) VALUES(?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $id_jadwal,$nama_jadwal,$tanggal,$waktu,$status);
+        $result = $stmt->execute();
+        $stmt->close();
+        // cek jika sudah sukses
+        if ($result) {
+            $stmt = $this->conn->prepare("SELECT * FROM tb_jadwal WHERE id_jadwal = ?");
+            $stmt->bind_param("s", $id_jadwal);
+            $stmt->execute();
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user;
+        } else {
+            return false;
+        }
+    }
+
+    public function simpanArtikel($id_artikel,$judul,$isi){
+        $penulis = "Kader";
+        $stmt = $this->conn->prepare("INSERT INTO tb_artikel(id_artikel, judul_artikel, isi_artikel, penulis) VALUES(?, ?, ?, ?)");
+        $stmt->bind_param("sss", $id_artikel,$judul,$isi, $penulis);
+        $result = $stmt->execute();
+        $stmt->close();
+        // cek jika sudah sukses
+        if ($result) {
+            $stmt = $this->conn->prepare("SELECT * FROM tb_artikel WHERE id_artikel = ?");
+            $stmt->bind_param("s", $id_jadwal);
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
@@ -265,6 +303,47 @@ class DB_Functions {
 
     }
 
+    public function createIdJadwal(){
+
+        $stmt = $this->conn->prepare("SELECT RIGHT(id_jadwal, 3) as idjadwal FROM tb_jadwal ORDER BY id_jadwal DESC LIMIT 1");
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0){
+            $stmt->close();
+            $stmt = $this->conn->prepare("SELECT RIGHT(id_jadwal, 3) as idjadwal FROM tb_jadwal ORDER BY id_jadwal DESC LIMIT 1");
+            $stmt->execute();
+            $user = $stmt->get_result()->fetch_assoc();
+            $kode = intval($user["idjadwal"]) + 1;
+        }else{
+            $kode = 1;
+        }
+
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); 
+        $kodejadi = "JD".$kodemax;  
+        return $kodejadi;
+
+    }
+
+    public function createIdArtikel(){
+
+        $stmt = $this->conn->prepare("SELECT RIGHT(id_artikel, 3) as idartikel FROM tb_artikel ORDER BY id_artikel DESC LIMIT 1");
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0){
+            $stmt->close();
+            $stmt = $this->conn->prepare("SELECT RIGHT(id_artikel, 3) as idartikel FROM tb_artikel ORDER BY id_artikel DESC LIMIT 1");
+            $stmt->execute();
+            $user = $stmt->get_result()->fetch_assoc();
+            $kode = intval($user["idartikel"]) + 1;
+        }else{
+            $kode = 1;
+        }
+
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); 
+        $kodejadi = "AR".$kodemax;  
+        return $kodejadi;
+
+    }
 
 }
 ?>

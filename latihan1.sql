@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2020 at 01:55 PM
+-- Generation Time: Aug 12, 2020 at 05:32 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -42,7 +42,7 @@ CREATE TABLE `detail_bayi` (
 --
 
 CREATE TABLE `tb_artikel` (
-  `id_artikel` int(5) NOT NULL,
+  `id_artikel` varchar(5) NOT NULL,
   `judul_artikel` varchar(50) NOT NULL,
   `isi_artikel` text NOT NULL,
   `penulis` varchar(30) NOT NULL
@@ -53,8 +53,7 @@ CREATE TABLE `tb_artikel` (
 --
 
 INSERT INTO `tb_artikel` (`id_artikel`, `judul_artikel`, `isi_artikel`, `penulis`) VALUES
-(1, 'JUDUL ARTIKEL 1', 'Artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel artikel ', 'Kader 1'),
-(2, 'Posyandu Bantu Tingkatkan Kesehatan Balita', 'Kesehatan merupakan salah satu nikmat terbesar yang jarang disyukuri, padahal kesehatan adalah pondasi utama untuk menjalani kehidupan.Mengingat kesehatan sangat penting bagi setiap orang, Rumah Zakat hadir memberikan layanan siaga Posyandu di Desa Berdaya Sahkuda Bayu, Sumatera Utara dengan berbagai program. Di antaranya adalah dengan pemberian makanan tambahan, pemberian vaksin rutin, penimbangan balita, pengobatan untuk lansia, dan berbagai pelatihan serta penyuluhan untuk masyarakat. ', 'Kader 1');
+('AR001', 'Posyandu Bantu Tingkatkan Kesehatan Balita', 'Kesehatan merupakan salah satu nikmat terbesar yang jarang disyukuri, padahal kesehatan adalah pondasi utama untuk menjalani kehidupan.Mengingat kesehatan sangat penting bagi setiap orang, Rumah Zakat hadir memberikan layanan siaga Posyandu di Desa Berdaya Sahkuda Bayu, Sumatera Utara dengan berbagai program. Di antaranya adalah dengan pemberian makanan tambahan, pemberian vaksin rutin, penimbangan balita, pengobatan untuk lansia, dan berbagai pelatihan serta penyuluhan untuk masyarakat. ', 'Kader 1');
 
 -- --------------------------------------------------------
 
@@ -71,13 +70,6 @@ CREATE TABLE `tb_bayi` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_bayi`
---
-
-INSERT INTO `tb_bayi` (`id_bayi`, `nama_bayi`, `tgl_lahir`, `jenis_kelamin`, `foto_bayi`, `id`) VALUES
-('BY1', 'bayi', '2020-08-01', 'Laki-Laki', 'images/bayi.jpeg', 4);
-
 -- --------------------------------------------------------
 
 --
@@ -91,13 +83,6 @@ CREATE TABLE `tb_detail_bayi` (
   `tinggi_bayi` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_detail_bayi`
---
-
-INSERT INTO `tb_detail_bayi` (`id_bayi`, `id_usia`, `berat_bayi`, `tinggi_bayi`) VALUES
-('BY1', 'US001', 3, 45);
-
 -- --------------------------------------------------------
 
 --
@@ -108,8 +93,17 @@ CREATE TABLE `tb_jadwal` (
   `id_jadwal` varchar(5) NOT NULL,
   `nama_imunisasi` varchar(30) NOT NULL,
   `tgl_imunisasi` date NOT NULL,
-  `waktu` time NOT NULL
+  `waktu` time NOT NULL,
+  `status` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_jadwal`
+--
+
+INSERT INTO `tb_jadwal` (`id_jadwal`, `nama_imunisasi`, `tgl_imunisasi`, `waktu`, `status`) VALUES
+('JD001', 'Pertama', '2020-08-17', '10:30:00', 'belum'),
+('JD002', 'Kedua', '2020-08-25', '11:00:00', 'belum');
 
 -- --------------------------------------------------------
 
@@ -508,11 +502,6 @@ ALTER TABLE `tb_usia`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `tb_artikel`
---
-ALTER TABLE `tb_artikel`
-  MODIFY `id_artikel` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
