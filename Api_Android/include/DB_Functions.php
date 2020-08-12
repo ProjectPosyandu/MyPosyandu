@@ -185,6 +185,23 @@ class DB_Functions {
         }
     }
 
+    public function isUsiaBayiExisted($id_bayi,$id_usia){
+        $stmt = $this->conn->prepare("SELECT id_usia from tb_detail_bayi WHERE id_bayi = ? AND id_usia = ?");
+        $stmt->bind_param("ss", $id_bayi, $id_usia);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            //usia sudah ada
+            $stmt->close();
+            return true;
+        } else {
+            // usia belum ada 
+            $stmt->close();
+            return false;
+        }
+    }
+
     public function isBayiExisted($nama_bayi) {
         $stmt = $this->conn->prepare("SELECT nama_bayi from tb_bayi WHERE nama_bayi = ?");
         $stmt->bind_param("s", $nama_bayi);

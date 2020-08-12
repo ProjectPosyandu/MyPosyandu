@@ -8,11 +8,10 @@
     tools:context=".fragment_ibu.JadwalFragment">
 
     <ScrollView
-        android:layout_below="@id/btnTambahJadwal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvJadwalImunisasi"
+            android:id="@+id/rvJadwalImunisasi1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +21,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/statusJadwal"
+        android:id="@+id/statusJadwal1"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="60dp"
