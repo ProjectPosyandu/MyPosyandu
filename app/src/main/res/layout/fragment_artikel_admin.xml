@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_kader.JadwalImunisasiFragment">
+    tools:context=".fragment_kader.ArtikelAdminFragment">
 
     <Button
-        android:id="@+id/btnTambahJadwal"
+        android:id="@+id/btnTambahArtikel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tambah Jadwal Imunisasi"/>
+        android:text="Tambah Artikel"/>
 
     <ScrollView
-        android:layout_below="@id/btnTambahJadwal"
+        android:layout_below="@id/btnTambahArtikel"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvJadwalImunisasi"
+            android:id="@+id/rvArtikelAdmin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +27,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/statusJadwal"
+        android:id="@+id/statusArtikelAdmin"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -40,6 +40,6 @@
         android:layout_marginTop="25dp"
         android:background="#03A9F4"
         android:textColor="#000000"
-        android:text="JADWAL IMUNISASI BELUM TERSEDIA. SILAHKAN TAMBAHKAN JADWAL IMUNISASI"/>
+        android:text="DATA ARTIKEL BELUM TERSEDIA. SILAHKAN TAMBAHKAN ARTIKEL"/>
 
 </RelativeLayout>

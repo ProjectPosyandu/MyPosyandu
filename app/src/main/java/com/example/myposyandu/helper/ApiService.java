@@ -2,6 +2,7 @@ package com.example.myposyandu.helper;
 
 import com.example.myposyandu.model.ResponseModel;
 import com.example.myposyandu.model.ResponseModelArtikel;
+import com.example.myposyandu.model.ResponseModelJadwal;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -64,7 +65,21 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("tampilPerBayi.php")
     Call<ResponseBody> getDataPerBayi(@Field("id") String id);
-    
+
+    @FormUrlEncoded
+    @POST("tambahJadwal.php")
+    Call<ResponseBody> tambahJadwal( @Field("nama_jadwal") String nama_jadwal,
+                                        @Field("tanggal") String tanggal,
+                                        @Field("waktu") String waktu);
 
 
+
+    @FormUrlEncoded
+    @POST("tambahArtikel.php")
+    Call<ResponseBody> tambahArtikel( @Field("judul") String judul,
+                                     @Field("isi") String isi);
+
+    @FormUrlEncoded
+    @POST("tampilJadwal.php")
+    Call<ResponseModelJadwal> getJadwal(@Field("status") String status);
 }
