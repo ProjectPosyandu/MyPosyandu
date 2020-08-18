@@ -1,21 +1,21 @@
 package com.example.myposyandu.model;
 
 public class ModelDataArtikel {
-    private int id_artikel;
+    private String id_artikel;
     private String judul_artikel, isi_artikel, penulis;
 
-    public ModelDataArtikel(int id_artikel, String judul_artikel, String isi_artikel, String penulis) {
+    public ModelDataArtikel(String id_artikel, String judul_artikel, String isi_artikel, String penulis) {
         this.id_artikel = id_artikel;
         this.judul_artikel = judul_artikel;
         this.isi_artikel = isi_artikel;
         this.penulis = penulis;
     }
 
-    public int getId_artikel() {
+    public String getId_artikel() {
         return id_artikel;
     }
 
-    public void setId_artikel(int id_artikel) {
+    public void setId_artikel(String id_artikel) {
         this.id_artikel = id_artikel;
     }
 

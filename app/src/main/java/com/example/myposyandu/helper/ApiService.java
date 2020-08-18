@@ -82,4 +82,5 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("tampilJadwal.php")
     Call<ResponseModelJadwal> getJadwal(@Field("status") String status);
+
 }

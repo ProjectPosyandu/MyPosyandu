@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.myposyandu.activity.DetailBayiActivity;
+import com.example.myposyandu.activity.DetailJadwalActivity;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
 import com.example.myposyandu.model.ModelDataJadwal;
@@ -48,11 +49,11 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ctx, DetailBayiActivity.class);
+                Intent intent = new Intent(ctx, DetailJadwalActivity.class);
                 intent.putExtra("id_jadwal", dm.getId_jadwal());
-//                intent.putExtra("nama_imunsasi", dm.getNama_imunisasi());
-//                intent.putExtra("tanggal", dm.getTanggal());
-//                intent.putExtra("waktu", dm.getWaktu());
+                intent.putExtra("nama_imunisasi", dm.getNama_imunisasi());
+                intent.putExtra("tanggal", dm.getTgl_imunisasi());
+                intent.putExtra("waktu", dm.getWaktu());
                 ctx.startActivity(intent);
 
             }

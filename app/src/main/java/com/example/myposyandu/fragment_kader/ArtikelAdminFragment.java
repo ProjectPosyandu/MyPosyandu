@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -43,6 +44,7 @@ public class ArtikelAdminFragment extends Fragment {
         status = root.findViewById(R.id.statusArtikelAdmin);
         lmArtikel = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvArtikel.setLayoutManager(lmArtikel);
+        rvArtikel.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         getDataArtikel();
 
         tambah.setOnClickListener(
@@ -67,10 +69,17 @@ public class ArtikelAdminFragment extends Fragment {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
-                listData = response.body().getData();
-                adArtikel = new ArtikelAdapter(getContext(), listData);
-                rvArtikel.setAdapter(adArtikel);
-                adArtikel.notifyDataSetChanged();
+                if(pesan.equals("Data tersedia")){
+                    status.setVisibility(View.INVISIBLE);
+                    rvArtikel.setVisibility(View.VISIBLE);
+                    listData = response.body().getData();
+                    adArtikel = new ArtikelAdapter(getContext(), listData);
+                    rvArtikel.setAdapter(adArtikel);
+                    adArtikel.notifyDataSetChanged();
+                }else{
+                    status.setVisibility(View.VISIBLE);
+                    rvArtikel.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
