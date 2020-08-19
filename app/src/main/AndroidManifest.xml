@@ -13,8 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.DetailJadwalActivity"/>
-        <activity android:name=".activity.DetailArtikelActivity"/>
+        <activity android:name=".activity.DetailIbuActivity"></activity>
+        <activity
+            android:name=".Main4Activity"
+            android:label="@string/title_activity_main4"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.DetailJadwalActivity" />
+        <activity android:name=".activity.DetailArtikelActivity" />
         <activity android:name=".activity.DetailBayiActivity" />
         <activity
             android:name=".activity.Main3Activity"
@@ -25,9 +30,7 @@
         <activity
             android:name=".activity.Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

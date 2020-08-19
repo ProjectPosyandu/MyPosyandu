@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myposyandu.Main4Activity;
 import com.example.myposyandu.R;
 import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.helper.ApiService;
@@ -120,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                                         finish();
                                     }else if (level_user.equals("2")){  //level 2 = bidan
-                                        startActivity(new Intent(mContext, MainActivity.class)
+                                        startActivity(new Intent(mContext, Main4Activity.class)
                                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                                         finish();
                                     }else if (level_user.equals("3")){   //level 3 = ibu bayi
