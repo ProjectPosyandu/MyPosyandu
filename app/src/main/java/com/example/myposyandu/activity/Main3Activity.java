@@ -1,10 +1,14 @@
 package com.example.myposyandu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myposyandu.R;
+import com.example.myposyandu.SharedPrefManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -20,6 +24,8 @@ import androidx.appcompat.widget.Toolbar;
 public class Main3Activity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    NavigationView navigationView;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,28 @@ public class Main3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        sharedPrefManager = new SharedPrefManager(this);
+        final Button logout = headerView.findViewById(R.id.btnLogout2);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_ID_BAYI, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_ID, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_NAMA, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_EMAIL, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_LEVEL, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_TGL, "");
+                startActivity(new Intent(Main3Activity.this, LoginActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

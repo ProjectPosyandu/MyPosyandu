@@ -1,8 +1,6 @@
 package com.example.myposyandu.fragment_ibu;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,22 +14,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myposyandu.R;
-import com.example.myposyandu.RecyclerViewAdapter;
+import com.example.myposyandu.adapter.RecyclerViewAdapter;
 import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
 import com.example.myposyandu.model.ResponseModel;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

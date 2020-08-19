@@ -8,16 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myposyandu.ArtikelAdapter;
-import com.example.myposyandu.JadwalAdapter;
+import com.example.myposyandu.adapter.ArtikelAdapter;
 import com.example.myposyandu.R;
 import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataArtikel;
-import com.example.myposyandu.model.ModelDataJadwal;
 import com.example.myposyandu.model.ResponseModelArtikel;
-import com.example.myposyandu.model.ResponseModelJadwal;
 
 import java.util.ArrayList;
 import java.util.List;
