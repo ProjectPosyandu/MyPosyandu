@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         mContext = this;
         mApiService = UtilsApi.getAPIService(); // meng-init yang ada di package apihelper
         initComponents();
+        checkSession();
     }
 
     public void initComponents(){
@@ -114,6 +115,8 @@ public class LoginActivity extends AppCompatActivity {
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, id);
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_LEVEL, level_user);
+                                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
 
                                     if (level_user.equals("1")){ //level 1 = kader (admin)
                                         startActivity(new Intent(mContext, Main3Activity.class)
@@ -157,5 +160,27 @@ public class LoginActivity extends AppCompatActivity {
                         loading.dismiss();
                     }
                 });
+    }
+
+    private void checkSession() {
+        //melihat session user
+        if (sharedPrefManager.getSPSudahLogin()){
+            if (sharedPrefManager.getSPLevel().equals("1")){ //level 1 = kader (admin)
+                startActivity(new Intent(mContext, Main3Activity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
+            }else if (sharedPrefManager.getSPLevel().equals("2")){  //level 2 = bidan
+                startActivity(new Intent(mContext, MainActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
+            }else if (sharedPrefManager.getSPLevel().equals("3")){   //level 3 = ibu bayi
+                startActivity(new Intent(mContext, Main2Activity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
+            }else {
+                startActivity(new Intent(mContext, LoginActivity.class));
+                finish();
+            }
+        }
     }
 }

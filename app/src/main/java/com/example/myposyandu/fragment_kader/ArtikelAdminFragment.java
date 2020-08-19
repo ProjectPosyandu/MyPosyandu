@@ -16,9 +16,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.example.myposyandu.ArtikelAdapter;
+import com.example.myposyandu.adapter.ArtikelAdapter;
 import com.example.myposyandu.R;
-import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataArtikel;

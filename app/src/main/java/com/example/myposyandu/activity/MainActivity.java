@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myposyandu.R;
+import com.example.myposyandu.SharedPrefManager;
+import com.google.android.material.navigation.NavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private Button smsSendToBtn;
     private Button smsViewBtn;
 
+    NavigationView navigationView;
+    Button logout;
+    SharedPrefManager sharedPrefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         smsSendToBtn = (Button) findViewById(R.id.smsSIntent);
         smsViewBtn = (Button) findViewById(R.id.smsVIntent);
 
+        doLogout();
         smsManagerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +61,28 @@ public class MainActivity extends AppCompatActivity {
         smsViewBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 sendSmsByVIntent();
+            }
+        });
+    }
+
+    private void doLogout() {
+        sharedPrefManager = new SharedPrefManager(this);
+        View headerView = navigationView.getHeaderView(0);
+        logout = headerView.findViewById(R.id.btnLogout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_ID_BAYI, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_ID, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_NAMA, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_EMAIL, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_LEVEL, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_TGL, "");
+                startActivity(new Intent(MainActivity.this, LoginActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
             }
         });
     }

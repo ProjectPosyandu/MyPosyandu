@@ -4,8 +4,10 @@ package com.example.myposyandu.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myposyandu.R;
@@ -13,6 +15,7 @@ import com.example.myposyandu.SharedPrefManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -37,6 +40,23 @@ public class Main2Activity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         final TextView namaUser = headerView.findViewById(R.id.namaUser);
         final TextView email = headerView.findViewById(R.id.email);
+        final Button logout = headerView.findViewById(R.id.btnLogout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_ID_BAYI, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_ID, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_NAMA, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_EMAIL, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_LEVEL, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, "");
+                sharedPrefManager.saveSPString(sharedPrefManager.SP_TGL, "");
+                startActivity(new Intent(Main2Activity.this, LoginActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
+            }
+        });
 
         sharedPrefManager = new SharedPrefManager(this);
         String snama = sharedPrefManager.getSPNama();
@@ -73,10 +93,6 @@ public class Main2Activity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
-//        switch (menu.getItem(0).getItemId()){
-//            case R.id.logout:
-//
-//        }
         return true;
     }
 
@@ -86,4 +102,22 @@ public class Main2Activity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.keluar){
+//            sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+//            sharedPrefManager.saveSPString(sharedPrefManager.SP_ID_BAYI, "");
+//            sharedPrefManager.saveSPString(sharedPrefManager.SP_ID, "");
+//            sharedPrefManager.saveSPString(sharedPrefManager.SP_NAMA, "");
+//            sharedPrefManager.saveSPString(sharedPrefManager.SP_EMAIL, "");
+//            sharedPrefManager.saveSPString(sharedPrefManager.SP_LEVEL, "");
+//            sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, "");
+//            sharedPrefManager.saveSPString(sharedPrefManager.SP_TGL, "");
+//            startActivity(new Intent(Main2Activity.this, LoginActivity.class)
+//                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+//            finish();
+//        }
+//        return true;
+//    }
 }
