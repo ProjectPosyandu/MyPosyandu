@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,7 +43,7 @@ public class ArtikelFragment extends Fragment {
         status = root.findViewById(R.id.statusArtikel);
         lmArtikel = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvArtikel.setLayoutManager(lmArtikel);
-
+        rvArtikel.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         getDataArtikel();
 
         return root;

@@ -184,13 +184,13 @@ class DB_Functions {
     public function simpanArtikel($id_artikel,$judul,$isi){
         $penulis = "Kader";
         $stmt = $this->conn->prepare("INSERT INTO tb_artikel(id_artikel, judul_artikel, isi_artikel, penulis) VALUES(?, ?, ?, ?)");
-        $stmt->bind_param("sss", $id_artikel,$judul,$isi, $penulis);
+        $stmt->bind_param("ssss", $id_artikel,$judul,$isi,$penulis);
         $result = $stmt->execute();
         $stmt->close();
         // cek jika sudah sukses
         if ($result) {
             $stmt = $this->conn->prepare("SELECT * FROM tb_artikel WHERE id_artikel = ?");
-            $stmt->bind_param("s", $id_jadwal);
+            $stmt->bind_param("s", $id_artikel);
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();

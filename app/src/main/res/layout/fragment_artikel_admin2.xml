@@ -4,19 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_ibu.JadwalFragment">
+    tools:context=".fragment_kader.ArtikelAdmin2Fragment">
+
+    <Button
+        android:id="@+id/btnTambahArtikelAdmin2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tambah Jadwal Imunisasi"/>
 
     <ScrollView
+        android:layout_below="@id/btnTambahArtikelAdmin2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvJadwalImunisasi1"
+            android:id="@+id/rvArtikelAdmin2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
     </ScrollView>
 
     <TextView
-        android:id="@+id/statusJadwal1"
+        android:id="@+id/statusArtikelAdmin2"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -29,7 +36,6 @@
         android:layout_marginTop="25dp"
         android:background="#03A9F4"
         android:textColor="#000000"
-        android:text="DATA BAYI BELUM TERSEDIA. SILAHKAN TAMBAHKAN DATA BAYI ANDA"/>
-
+        android:text="ARTIKEL BELUM TERSEDIA. SILAHKAN TAMBAHKAN ARTIKEL"/>
 
 </RelativeLayout>
