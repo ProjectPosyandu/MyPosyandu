@@ -2,6 +2,7 @@ package com.example.myposyandu.helper;
 
 import com.example.myposyandu.model.ResponseModel;
 import com.example.myposyandu.model.ResponseModelArtikel;
+import com.example.myposyandu.model.ResponseModelIbu;
 import com.example.myposyandu.model.ResponseModelJadwal;
 
 import okhttp3.ResponseBody;
@@ -83,4 +84,6 @@ public interface ApiService {
     @POST("tampilJadwal.php")
     Call<ResponseModelJadwal> getJadwal(@Field("status") String status);
 
+    @GET("tampilDataIbu.php")
+    Call<ResponseModelIbu> getDataIbu();
 }

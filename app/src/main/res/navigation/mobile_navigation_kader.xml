@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.myposyandu.fragment_kader.SemuaBayiFragment"
+        android:name="com.example.myposyandu.fragment_kader.DataIbuFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_semua_bayi">
+        tools:layout="@layout/fragment_data_ibu">
 
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"

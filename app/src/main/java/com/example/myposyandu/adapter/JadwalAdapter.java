@@ -57,7 +57,6 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-//        return namaBayi.size();
         return ListData.size();
     }
 
