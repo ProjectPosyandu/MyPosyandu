@@ -1,7 +1,7 @@
 <?php
 require("config.php");
 $status = $_POST['status'];
-$perintah = "SELECT * FROM tb_jadwal WHERE status = '$status'";
+$perintah = "SELECT * FROM tb_jadwal ";
 $eksekusi = mysqli_query($con,$perintah);
 $cek = mysqli_affected_rows($con);
 
@@ -15,7 +15,7 @@ if($cek > 0){
         $D["nama_imunisasi"] = $ambil ->nama_imunisasi;
         $D["tgl_imunisasi"] = $ambil ->tgl_imunisasi;
         $D["waktu"] = $ambil ->waktu;
-        
+        $D["status"] = $ambil->status;
         array_push($response["data"], $D);
     }
 }else{
