@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myposyandu.DataIbuAdapter;
 import com.example.myposyandu.R;
-import com.example.myposyandu.RecyclerViewAdapter;
+import com.example.myposyandu.adapter.RecyclerViewAdapter;
 import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
