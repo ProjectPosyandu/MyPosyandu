@@ -32,6 +32,14 @@
         android:layout_marginTop="10dp"
         android:text="Pukul"
         android:textSize="17dp"/>
+    <TextView
+        android:id="@+id/djStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Status"
+        android:textSize="17dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

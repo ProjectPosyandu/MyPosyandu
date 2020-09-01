@@ -72,44 +72,6 @@ public class TambahArtikelFragment extends Fragment {
         return view;
     }
 
-    private void tambahArtikel(String judul_artikel, String isi_artikel) {
-        mApiService.tambahArtikel(judul_artikel,isi_artikel)
-                .enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()){
-                    Log.i("debug", "onResponse: BERHASIL");
-                    loading.dismiss();
-                    try {
-                        JSONObject jsonRESULTS = new JSONObject(response.body().string());
-                        if (jsonRESULTS.getString("error").equals("false")){
-                            showMessage("Artikel Telah Disimpan");
-                            getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
-                                    new ArtikelAdminFragment()).commit();
-                        } else {
-                            String error_message = jsonRESULTS.getString("error_msg");
-                            showMessage(error_message);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Log.i("debug", "onResponse: GA BERHASIL");
-                    loading.dismiss();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("debug", "onFailure: ERROR > " + t.getMessage());
-                showMessage("Koneksi Internet Bermasalah");
-            }
-        });
-    }
-
-
     private void inItComponents(View view) {
         mContext = getContext();
         mApiService = UtilsApi.getAPIService();
@@ -117,6 +79,43 @@ public class TambahArtikelFragment extends Fragment {
         isi = view.findViewById(R.id.etIsiArtikel);
         btnTambah  =view.findViewById(R.id.btnSimpanArtikel);
 
+    }
+
+    private void tambahArtikel(String judul_artikel, String isi_artikel) {
+        mApiService.tambahArtikel(judul_artikel,isi_artikel)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+                            Log.i("debug", "onResponse: BERHASIL");
+                            loading.dismiss();
+                            try {
+                                JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                                if (jsonRESULTS.getString("error").equals("false")){
+                                    showMessage("Artikel Telah Disimpan");
+                                    getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
+                                            new ArtikelAdminFragment()).commit();
+                                } else {
+                                    String error_message = jsonRESULTS.getString("error_msg");
+                                    showMessage(error_message);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Log.i("debug", "onResponse: GA BERHASIL");
+                            loading.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("debug", "onFailure: ERROR > " + t.getMessage());
+                        showMessage("Koneksi Internet Bermasalah");
+                    }
+                });
     }
 
     private void showMessage(String message) {

@@ -48,6 +48,7 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder
                 intent.putExtra("nama_imunisasi", dm.getNama_imunisasi());
                 intent.putExtra("tanggal", dm.getTgl_imunisasi());
                 intent.putExtra("waktu", dm.getWaktu());
+                intent.putExtra("status", dm.getStatus());
                 ctx.startActivity(intent);
 
             }

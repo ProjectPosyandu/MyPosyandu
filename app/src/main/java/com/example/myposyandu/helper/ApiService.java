@@ -87,4 +87,8 @@ public interface ApiService {
 
     @GET("tampilDataIbu.php")
     Call<ResponseModelIbu> getDataIbu();
+
+    @FormUrlEncoded
+    @POST("updateJadwal.php")
+    Call<ResponseBody> setSelesai(@Field("id_jadwal") String id_jadwal);
 }

@@ -345,5 +345,26 @@ class DB_Functions {
 
     }
 
+    public function updateJadwal($id_jadwal){
+        $status = "sudah";
+        $stmt = $this->conn->prepare("UPDATE tb_jadwal
+            SET status = ? 
+            WHERE id_jadwal = ?");
+        $stmt->bind_param("ss", $status, $id_jadwal);
+        $result = $stmt->execute();
+        $stmt->close();
+
+        if ($result) {
+            $stmt = $this->conn->prepare("SELECT * FROM tb_jadwal WHERE id_jadwal = ?");
+            $stmt->bind_param("s", $id_jadwal);
+            $stmt->execute();
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user;
+        }else{
+                return false;
+        }
+    }
+
 }
 ?>
