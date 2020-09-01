@@ -1,4 +1,4 @@
-package com.example.myposyandu.fragment_kader;
+package com.example.myposyandu.fragment_bidan;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,17 +10,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myposyandu.adapter.DataIbuAdapter;
 import com.example.myposyandu.R;
-
 import com.example.myposyandu.SharedPrefManager;
+import com.example.myposyandu.adapter.JadwalAdapter;
+import com.example.myposyandu.fragment_kader.TambahJadwalFragment;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
-import com.example.myposyandu.model.ModelDataIbu;
-import com.example.myposyandu.model.ResponseModelIbu;
+import com.example.myposyandu.model.ModelDataJadwal;
+import com.example.myposyandu.model.ResponseModelJadwal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,49 +30,46 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DataIbuFragment extends Fragment {
+public class JadwalBidanFragment extends Fragment {
+    Button tambah;
     private RecyclerView rvData;
     private RecyclerView.Adapter adData;
     private RecyclerView.LayoutManager lmData;
-    private List<ModelDataIbu> listData = new ArrayList<>();
-    TextView status;
-    Button btnTambah;
-
+    private List<ModelDataJadwal> listJadwal = new ArrayList<>();
     SharedPrefManager sharedPrefManager;
+    TextView status;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_data_ibu, container, false);
-        rvData = root.findViewById(R.id.rvDataIbu);
-        status = root.findViewById(R.id.status);
+        View root = inflater.inflate(R.layout.fragment_jadwal_bidan, container, false);
+        tambah  = root.findViewById(R.id.btnTambahJadwal);
+        rvData = root.findViewById(R.id.rvJadwalImunisasi);
+        status = root.findViewById(R.id.statusJadwal);
         lmData = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
-        btnTambah = root.findViewById(R.id.btnTambahIbu);
+        rvData.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        getJadwal("belum");
 
-        btnTambah.setOnClickListener(
+        tambah.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
-                                new TambahIbuFragment()).commit();
+                                new TambahJadwalFragment()).commit();
 
                     }
                 }
         );
 
-//        status.setVisibility(View.VISIBLE);
-
-        tampilDataIbu();
-
         return root;
     }
 
-    public void tampilDataIbu(){
+    public void getJadwal(String key){
         ApiService ardData = UtilsApi.getAPIService();
-        Call<ResponseModelIbu> tampil = ardData.getDataIbu();
-        tampil.enqueue(new Callback<ResponseModelIbu>() {
+        Call<ResponseModelJadwal> tampilData = ardData.getJadwal(key);
+        tampilData.enqueue(new Callback<ResponseModelJadwal>() {
             @Override
-            public void onResponse(Call<ResponseModelIbu> call, Response<ResponseModelIbu> response) {
+            public void onResponse(Call<ResponseModelJadwal> call, Response<ResponseModelJadwal> response) {
                 int kode = response.body().getKode();
                 String pesan = response.body().getPesan();
 
@@ -79,8 +77,8 @@ public class DataIbuFragment extends Fragment {
                     status.setVisibility(View.INVISIBLE);
                     rvData.setVisibility(View.VISIBLE);
 
-                    listData = response.body().getData();
-                    adData = new DataIbuAdapter(getContext(), listData);
+                    listJadwal = response.body().getData();
+                    adData = new JadwalAdapter(getContext(), listJadwal);
                     rvData.setAdapter(adData);
                     adData.notifyDataSetChanged();
 
@@ -92,7 +90,7 @@ public class DataIbuFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResponseModelIbu> call, Throwable t) {
+            public void onFailure(Call<ResponseModelJadwal> call, Throwable t) {
                 Toast.makeText(getContext(), "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
             }
         });

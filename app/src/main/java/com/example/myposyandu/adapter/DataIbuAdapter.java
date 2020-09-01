@@ -1,4 +1,4 @@
-package com.example.myposyandu;
+package com.example.myposyandu.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myposyandu.activity.DetailBayiActivity;
+import com.example.myposyandu.R;
+import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.activity.DetailIbuActivity;
 import com.example.myposyandu.model.ModelDataIbu;
 
@@ -21,6 +22,7 @@ public class DataIbuAdapter extends RecyclerView.Adapter<DataIbuAdapter.ViewHold
 
     private Context ctx;
     private List<ModelDataIbu> ListData;
+//    SharedPrefManager sharedPrefManager;
 
     public DataIbuAdapter(Context ctx, List<ModelDataIbu> listData) {
         this.ctx = ctx;
@@ -43,6 +45,9 @@ public class DataIbuAdapter extends RecyclerView.Adapter<DataIbuAdapter.ViewHold
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                int id = dm.getId();
+//                sharedPrefManager.saveSPInt(SharedPrefManager.SP_ID_IBU, id);
+
                 Intent intent = new Intent(ctx, DetailIbuActivity.class);
                 intent.putExtra("id", dm.getId());
                 intent.putExtra("nama", dm.getNama());
@@ -68,6 +73,8 @@ public class DataIbuAdapter extends RecyclerView.Adapter<DataIbuAdapter.ViewHold
             tvNama = itemView.findViewById(R.id.tvNamaIbu);
             tvTelp = itemView.findViewById(R.id.tvNoTelp);
             constraintLayout = itemView.findViewById(R.id.constraintLayoutIbu);
+//            sharedPrefManager = new SharedPrefManager(ctx);
+
         }
     }
 }

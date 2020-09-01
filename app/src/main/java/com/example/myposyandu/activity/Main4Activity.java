@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.example.myposyandu.R;
 import com.example.myposyandu.SharedPrefManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -21,23 +19,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class Main3Activity extends AppCompatActivity {
+public class Main4Activity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     NavigationView navigationView;
     SharedPrefManager sharedPrefManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_main4);
 
         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        sharedPrefManager = new SharedPrefManager(this);
-        final Button logout = headerView.findViewById(R.id.btnLogout2);
+        final TextView namaUser = headerView.findViewById(R.id.namaUser3);
+        final TextView email = headerView.findViewById(R.id.email3);
+        final Button logout = headerView.findViewById(R.id.btnLogout3);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,12 +47,20 @@ public class Main3Activity extends AppCompatActivity {
                 sharedPrefManager.saveSPString(sharedPrefManager.SP_LEVEL, "");
                 sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, "");
                 sharedPrefManager.saveSPString(sharedPrefManager.SP_TGL, "");
-                startActivity(new Intent(Main3Activity.this, LoginActivity.class)
+                startActivity(new Intent(Main4Activity.this, LoginActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                 finish();
             }
         });
 
+        sharedPrefManager = new SharedPrefManager(this);
+        String snama = sharedPrefManager.getSPNama();
+        String semail = sharedPrefManager.getSPEmail();
+        namaUser.setText(snama);
+        email.setText(semail);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -63,6 +69,9 @@ public class Main3Activity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -79,7 +88,7 @@ public class Main3Activity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main3, menu);
+        getMenuInflater().inflate(R.menu.main4, menu);
         return true;
     }
 

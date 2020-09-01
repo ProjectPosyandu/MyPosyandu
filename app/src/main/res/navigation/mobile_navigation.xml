@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.myposyandu.fragment_bidan.HomeFragment"
+        android:name="com.example.myposyandu.fragment_bidan.DataIbuBayiFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_data_ibu_bayi">
 
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
@@ -31,13 +31,13 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.myposyandu.fragment_bidan.GalleryFragment"
+        android:name="com.example.myposyandu.fragment_bidan.JadwalBidanFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_jadwal_bidan" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.myposyandu.fragment_bidan.SlideshowFragment"
+        android:name="com.example.myposyandu.fragment_bidan.ArtikelBidanFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_artikel_bidan" />
 </navigation>

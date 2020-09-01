@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.DetailIbuActivity"></activity>
         <activity
-            android:name=".Main4Activity"
+            android:name=".activity.Main4Activity"
             android:label="@string/title_activity_main4"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.DetailJadwalActivity" />

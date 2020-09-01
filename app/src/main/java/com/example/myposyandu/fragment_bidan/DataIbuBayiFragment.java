@@ -1,10 +1,9 @@
-package com.example.myposyandu.fragment_kader;
+package com.example.myposyandu.fragment_bidan;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myposyandu.adapter.DataIbuAdapter;
 import com.example.myposyandu.R;
-
-import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataIbu;
@@ -29,37 +26,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DataIbuFragment extends Fragment {
+public class DataIbuBayiFragment extends Fragment {
     private RecyclerView rvData;
     private RecyclerView.Adapter adData;
     private RecyclerView.LayoutManager lmData;
     private List<ModelDataIbu> listData = new ArrayList<>();
     TextView status;
-    Button btnTambah;
 
-    SharedPrefManager sharedPrefManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_data_ibu, container, false);
+        View root = inflater.inflate(R.layout.fragment_data_ibu_bayi, container, false);
         rvData = root.findViewById(R.id.rvDataIbu);
         status = root.findViewById(R.id.status);
         lmData = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
-        btnTambah = root.findViewById(R.id.btnTambahIbu);
-
-        btnTambah.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
-                                new TambahIbuFragment()).commit();
-
-                    }
-                }
-        );
-
-//        status.setVisibility(View.VISIBLE);
 
         tampilDataIbu();
 
