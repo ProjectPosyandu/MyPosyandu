@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class Main4Activity extends AppCompatActivity {
-
+    //halaman bidan
     private AppBarConfiguration mAppBarConfiguration;
     NavigationView navigationView;
     SharedPrefManager sharedPrefManager;

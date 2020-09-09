@@ -22,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class Main3Activity extends AppCompatActivity {
-
+    // halaman admin(kader)
     private AppBarConfiguration mAppBarConfiguration;
     NavigationView navigationView;
     SharedPrefManager sharedPrefManager;
@@ -37,6 +37,8 @@ public class Main3Activity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         sharedPrefManager = new SharedPrefManager(this);
+        final TextView namaUser = headerView.findViewById(R.id.namaUser2);
+        final TextView email = headerView.findViewById(R.id.email2);
         final Button logout = headerView.findViewById(R.id.btnLogout2);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +56,12 @@ public class Main3Activity extends AppCompatActivity {
                 finish();
             }
         });
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String snama = sharedPrefManager.getSPNama();
+        String semail = sharedPrefManager.getSPEmail();
+        namaUser.setText(snama);
+        email.setText(semail);
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {

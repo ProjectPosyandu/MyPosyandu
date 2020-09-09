@@ -25,7 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class Main2Activity extends AppCompatActivity {
-
+    // halaman pengguna (ibu)
     private AppBarConfiguration mAppBarConfiguration;
     NavigationView navigationView;
     SharedPrefManager sharedPrefManager;

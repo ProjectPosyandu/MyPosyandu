@@ -103,7 +103,7 @@
     <ImageView
         android:layout_above="@+id/judul"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo"
+        android:src="@drawable/logo_circle"
         android:layout_width="100dp"
         android:layout_height="100dp"/>
 </RelativeLayout>

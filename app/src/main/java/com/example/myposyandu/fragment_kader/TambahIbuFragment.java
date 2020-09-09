@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import cyd.awesome.material.AwesomeText;
+import cyd.awesome.material.FontCharacterMaps;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +64,24 @@ public class TambahIbuFragment extends Fragment {
         password = (EditText) view.findViewById(R.id.etPassword);
         no_telp = (EditText) view.findViewById(R.id.daTelepon);
         btnTambah = (Button) view.findViewById(R.id.btnSimpan);
+        ImgShowHidePassword = (AwesomeText) view.findViewById(R.id.ImgShowPassword2);
 
+        ImgShowHidePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pwd_status) {
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    pwd_status = false;
+                    ImgShowHidePassword.setMaterialDesignIcon(FontCharacterMaps.MaterialDesign.MD_VISIBILITY);
+                    password.setSelection(password.length());
+                } else {
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                    pwd_status = true;
+                    ImgShowHidePassword.setMaterialDesignIcon(FontCharacterMaps.MaterialDesign.MD_VISIBILITY_OFF);
+                    password.setSelection(password.length());
+                }
+            }
+        });
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
