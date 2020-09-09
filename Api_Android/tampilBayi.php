@@ -1,7 +1,7 @@
 <?php
 require("config.php");
 $id = $_POST['id'];
-$perintah = "SELECT * FROM tb_bayi WHERE id = '$id'";
+$perintah = "SELECT * FROM tb_bayi WHERE id = '$id' ORDER BY id_bayi DESC";
 $eksekusi = mysqli_query($con,$perintah);
 $cek = mysqli_affected_rows($con);
 
@@ -16,6 +16,7 @@ if($cek > 0){
         $D["jenis_kelamin"] = $ambil ->jenis_kelamin;
         $D["tgl_lahir"] = $ambil ->tgl_lahir;
         $D["foto_bayi"] = $ambil ->foto_bayi;
+        $D["id"] = $ambil ->id;
         
         array_push($response["data"], $D);
     }

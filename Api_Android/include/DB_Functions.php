@@ -282,6 +282,19 @@ class DB_Functions {
         }
     }
 
+    public function getDataPerIbu($id) {
+ 
+        $stmt = $this->conn->prepare("SELECT * FROM tb_user WHERE id = ?");
+        $stmt->bind_param("s", $id);
+        if ($stmt->execute()) {
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user; 
+        } else {
+            return false;
+        }
+    }
+
     public function createIdBayi(){
 
         $stmt = $this->conn->prepare("SELECT RIGHT(id_bayi, 3) as idbayi FROM tb_bayi ORDER BY id_bayi DESC LIMIT 1");

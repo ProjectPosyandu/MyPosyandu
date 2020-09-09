@@ -1,6 +1,6 @@
 <?php
 require("config.php");
-$perintah = "SELECT * FROM tb_user WHERE level='3' ";
+$perintah = "SELECT * FROM tb_user WHERE level='3' ORDER BY id DESC ";
 $eksekusi = mysqli_query($con,$perintah);
 $cek = mysqli_affected_rows($con);
 
