@@ -41,6 +41,7 @@ public class DataIbuAdapter extends RecyclerView.Adapter<DataIbuAdapter.ViewHold
     public void onBindViewHolder(@NonNull DataIbuAdapter.ViewHolder holder, int position) {
         ModelDataIbu dm = ListData.get(position);
         holder.tvNama.setText(dm.getNama());
+//        holder.tvTelp.setText(String.valueOf(dm.getId()));
         holder.tvTelp.setText(dm.getNo_telp());
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +50,7 @@ public class DataIbuAdapter extends RecyclerView.Adapter<DataIbuAdapter.ViewHold
 //                sharedPrefManager.saveSPInt(SharedPrefManager.SP_ID_IBU, id);
 
                 Intent intent = new Intent(ctx, DetailIbuActivity.class);
-                intent.putExtra("id", dm.getId());
+                intent.putExtra("id", String.valueOf(dm.getId()));
                 intent.putExtra("nama", dm.getNama());
                 intent.putExtra("username", dm.getEmail());
                 intent.putExtra("telp", dm.getNo_telp());

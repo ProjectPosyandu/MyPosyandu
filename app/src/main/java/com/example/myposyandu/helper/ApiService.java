@@ -69,6 +69,10 @@ public interface ApiService {
     Call<ResponseBody> getDataPerBayi(@Field("id") String id);
 
     @FormUrlEncoded
+    @POST("tampilPerIbu.php")
+    Call<ResponseBody> getDataPerIbu(@Field("id") String id);
+
+    @FormUrlEncoded
     @POST("tambahJadwal.php")
     Call<ResponseBody> tambahJadwal( @Field("nama_jadwal") String nama_jadwal,
                                         @Field("tanggal") String tanggal,
