@@ -31,12 +31,9 @@ public class Main3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        sharedPrefManager = new SharedPrefManager(this);
         final TextView namaUser = headerView.findViewById(R.id.namaUser2);
         final TextView email = headerView.findViewById(R.id.email2);
         final Button logout = headerView.findViewById(R.id.btnLogout2);
@@ -62,6 +59,10 @@ public class Main3Activity extends AppCompatActivity {
         String semail = sharedPrefManager.getSPEmail();
         namaUser.setText(snama);
         email.setText(semail);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
