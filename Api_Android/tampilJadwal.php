@@ -1,7 +1,7 @@
 <?php
 require("config.php");
 $status = $_POST['status'];
-$perintah = "SELECT * FROM tb_jadwal ";
+$perintah = "SELECT * FROM tb_jadwal WHERE status = '$status' ";
 $eksekusi = mysqli_query($con,$perintah);
 $cek = mysqli_affected_rows($con);
 
