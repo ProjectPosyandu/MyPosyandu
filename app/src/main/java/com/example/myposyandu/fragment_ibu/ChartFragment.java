@@ -1,8 +1,10 @@
 package com.example.myposyandu.fragment_ibu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
 import com.example.myposyandu.R;
 import com.example.myposyandu.SharedPrefManager;
+import com.example.myposyandu.activity.DetailBayiActivity;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 
@@ -44,6 +47,7 @@ public class ChartFragment extends Fragment {
     ApiService mApiService;
     SharedPrefManager sharedPrefManager;
 
+    String idBayi;
     private static final String TAG = "TAG";
     List<Number> beratBayi = new ArrayList<>();
     List<String> usiaList = new ArrayList<>();
@@ -62,6 +66,7 @@ public class ChartFragment extends Fragment {
         mContext = getActivity();
         mApiService = UtilsApi.getAPIService();
         sharedPrefManager = new SharedPrefManager(getActivity());
+        idBayi = sharedPrefManager.getSpIdBayi();
         String id_bayi = sharedPrefManager.getSpIdBayi();
         String jk = sharedPrefManager.getSpJk();
         beratBayi.clear();
@@ -181,8 +186,8 @@ public class ChartFragment extends Fragment {
     List<DataEntry> seriesData = new ArrayList<>();
     int i = 0;
     while (i<usiaList.size()){
-        seriesData.add(new ChartFragment.CustomDataEntry(usiaList.get(i),kurangList.get(i),idealBawahList.get(i),
-            idealList.get(i),idealAtasList.get(i),lebihList.get(i),beratBayi.get(i)));
+        seriesData.add(new ChartFragment.CustomDataEntry(usiaList.get(i),beratBayi.get(i),kurangList.get(i),idealBawahList.get(i),
+            idealList.get(i),idealAtasList.get(i),lebihList.get(i)));
         i++;
     }
     Set set = Set.instantiate();
@@ -194,41 +199,41 @@ public class ChartFragment extends Fragment {
     Mapping series5Mapping = set.mapAs("{ x: 'x', value: 'value5' }");
     Mapping series6Mapping = set.mapAs("{ x: 'x', value: 'value6' }");
 
-      Line series1 = cartesian.line(series1Mapping);
-      series1.name("Kurang");
-      series1.hovered().markers().enabled(true);
-      series1.hovered().markers().type(MarkerType.CIRCLE).size(4d);
-      series1.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
+     Line series1 = cartesian.line(series1Mapping);
+     series1.name("Berat Bayi");
+     series1.hovered().markers().enabled(true);
+     series1.hovered().markers().type(MarkerType.CIRCLE).size(4d);
+     series1.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
 
-         Line series2 = cartesian.line(series2Mapping);
-         series2.name("Ideal Bawah");
-         series2.hovered().markers().enabled(true);
-         series2.hovered().markers().type(MarkerType.CIRCLE).size(4d);
-         series2.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
+     Line series2 = cartesian.line(series2Mapping);
+     series2.name("Kurang");
+     series2.hovered().markers().enabled(true);
+     series2.hovered().markers().type(MarkerType.CIRCLE).size(4d);
+     series2.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
 
-         Line series3 = cartesian.line(series3Mapping);
-         series3.name("Ideal");
-         series3.hovered().markers().enabled(true);
-         series3.hovered().markers().type(MarkerType.CIRCLE).size(4d);
-         series3.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
+     Line series3 = cartesian.line(series3Mapping);
+     series3.name("Ideal Bawah");
+     series3.hovered().markers().enabled(true);
+     series3.hovered().markers().type(MarkerType.CIRCLE).size(4d);
+     series3.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
 
-         Line series4 = cartesian.line(series4Mapping);
-         series4.name("Ideal Atas");
-         series4.hovered().markers().enabled(true);
-         series4.hovered().markers().type(MarkerType.CIRCLE).size(4d);
-         series4.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
+     Line series4 = cartesian.line(series4Mapping);
+     series4.name("Ideal");
+     series4.hovered().markers().enabled(true);
+     series4.hovered().markers().type(MarkerType.CIRCLE).size(4d);
+     series4.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
 
-         Line series5 = cartesian.line(series5Mapping);
-         series5.name("Lebih");
-         series5.hovered().markers().enabled(true);
-         series5.hovered().markers().type(MarkerType.CIRCLE).size(4d);
-         series5.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
+     Line series5 = cartesian.line(series5Mapping);
+     series5.name("Ideal Atas");
+     series5.hovered().markers().enabled(true);
+     series5.hovered().markers().type(MarkerType.CIRCLE).size(4d);
+     series5.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
 
-         Line series6 = cartesian.line(series6Mapping);
-         series6.name("Data Bayi");
-         series6.hovered().markers().enabled(true);
-         series6.hovered().markers().type(MarkerType.CIRCLE).size(4d);
-         series6.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
+     Line series6 = cartesian.line(series6Mapping);
+     series6.name("Lebih");
+     series6.hovered().markers().enabled(true);
+     series6.hovered().markers().type(MarkerType.CIRCLE).size(4d);
+     series6.tooltip().position("right").anchor(Anchor.LEFT_CENTER).offsetX(5d).offsetY(5d);
 
      cartesian.legend().enabled(true);
      cartesian.legend().fontSize(13d);
@@ -246,5 +251,25 @@ public class ChartFragment extends Fragment {
        setValue("value6", value6);
   }
  }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                    Intent intent = new Intent(getActivity(), DetailBayiActivity.class);
+                    intent.putExtra("id_bayi", idBayi);
+                    getActivity().startActivity(intent);
+                    getActivity().finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 
 }

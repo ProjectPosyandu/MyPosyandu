@@ -100,7 +100,7 @@ public class DetailBayiFragment extends Fragment {
                                     // Jika login berhasil maka data nama yang ada di response API
                                     // akan diparsing ke activity selanjutnya
 
-//                                    int id = jsonRESULTS.getJSONObject("user").getInt("id_bayi");
+                                    String id_bayi = jsonRESULTS.getJSONObject("user").getString("id_bayi");
                                     String nama_bayi = jsonRESULTS.getJSONObject("user").getString("nama_bayi");
                                     String jk = jsonRESULTS.getJSONObject("user").getString("jenis_kelamin");
                                     String tgl_lahir = jsonRESULTS.getJSONObject("user").getString("tgl_lahir");
@@ -116,7 +116,8 @@ public class DetailBayiFragment extends Fragment {
                                             .apply(requestOptions)
                                             .into(ifotoBayi);
 
-//                                    sharedPrefManager.saveSPInt(SharedPrefManager.SP_ID_BAYI, id);
+                                    sharedPrefManager.saveSPString(sharedPrefManager.SP_ID_BAYI, id_bayi);
+                                    sharedPrefManager.saveSPString(sharedPrefManager.SP_TGL, tgl_lahir);
                                     sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, jk);
                                     setDataActivity(nama_bayi, jk, tgl_lahir);
 

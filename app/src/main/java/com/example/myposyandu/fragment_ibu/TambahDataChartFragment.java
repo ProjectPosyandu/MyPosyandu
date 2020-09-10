@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class TambahDataChartFragment extends Fragment {
     Button btnTambah;
     TextView tgl, cek;
 
-    String tglLahir, tglSekarang, hasil;
+    String tglLahir, tglSekarang, hasil, idBayi;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
 
@@ -92,6 +93,9 @@ public class TambahDataChartFragment extends Fragment {
         btnTambah = view.findViewById(R.id.btnTambah);
         tgl =view.findViewById(R.id.tgl);
         cek = view.findViewById(R.id.bulan);
+
+        sharedPrefManager = new SharedPrefManager(getActivity());
+        idBayi = sharedPrefManager.getSpIdBayi();
     }
 
     private void hitungUsia() {
@@ -178,5 +182,26 @@ public class TambahDataChartFragment extends Fragment {
             lama++;
         }
         return lama/30;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+//                    startActivity(new Intent(getActivity(), DetailBayiActivity.class));
+                    Intent intent = new Intent(getActivity(), DetailBayiActivity.class);
+                    intent.putExtra("id_bayi", idBayi);
+                    getActivity().startActivity(intent);
+                    getActivity().finish();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.myposyandu.R;
+import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.activity.DetailBayiActivity;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
@@ -27,6 +28,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Context ctx;
     private List<ModelDataBayi> ListData;
+
+    SharedPrefManager sharedPrefManager;
 
     public RecyclerViewAdapter(Context ctx, List<ModelDataBayi> listData) {
         this.ctx = ctx;

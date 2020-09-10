@@ -2,6 +2,7 @@ package com.example.myposyandu.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -52,6 +53,16 @@ public class DetailJadwalActivity extends AppCompatActivity {
         setSelesai = findViewById(R.id.djSetSelesai);
         sharedPrefManager = new SharedPrefManager(this);
 
+        if (sharedPrefManager.getSPLevel().equals("1")){ //level 1 = kader (admin)
+            kirimPesan.setVisibility(View.VISIBLE);
+            setSelesai.setVisibility(View.VISIBLE);
+        }else if (sharedPrefManager.getSPLevel().equals("2")){  //level 2 = bidan
+            kirimPesan.setVisibility(View.VISIBLE);
+            setSelesai.setVisibility(View.VISIBLE);
+        }else if (sharedPrefManager.getSPLevel().equals("3")){   //level 3 = ibu bayi
+            kirimPesan.setVisibility(View.INVISIBLE);
+            setSelesai.setVisibility(View.INVISIBLE);
+        }
         getDetailArtikel();
     }
 

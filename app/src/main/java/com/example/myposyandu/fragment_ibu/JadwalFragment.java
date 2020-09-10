@@ -42,7 +42,7 @@ public class JadwalFragment extends Fragment {
         lmData = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
         rvData.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        getJadwal("selesai");
+        getJadwal("sudah");
         return root;
     }
 
