@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2020 at 05:32 AM
+-- Generation Time: Sep 10, 2020 at 08:15 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -53,7 +53,10 @@ CREATE TABLE `tb_artikel` (
 --
 
 INSERT INTO `tb_artikel` (`id_artikel`, `judul_artikel`, `isi_artikel`, `penulis`) VALUES
-('AR001', 'Posyandu Bantu Tingkatkan Kesehatan Balita', 'Kesehatan merupakan salah satu nikmat terbesar yang jarang disyukuri, padahal kesehatan adalah pondasi utama untuk menjalani kehidupan.Mengingat kesehatan sangat penting bagi setiap orang, Rumah Zakat hadir memberikan layanan siaga Posyandu di Desa Berdaya Sahkuda Bayu, Sumatera Utara dengan berbagai program. Di antaranya adalah dengan pemberian makanan tambahan, pemberian vaksin rutin, penimbangan balita, pengobatan untuk lansia, dan berbagai pelatihan serta penyuluhan untuk masyarakat. ', 'Kader 1');
+('AR001', 'Posyandu Bantu Tingkatkan Kesehatan Balita', 'Kesehatan merupakan salah satu nikmat terbesar yang jarang disyukuri, padahal kesehatan adalah pondasi utama untuk menjalani kehidupan.Mengingat kesehatan sangat penting bagi setiap orang, Rumah Zakat hadir memberikan layanan siaga Posyandu di Desa Berdaya Sahkuda Bayu, Sumatera Utara dengan berbagai program. Di antaranya adalah dengan pemberian makanan tambahan, pemberian vaksin rutin, penimbangan balita, pengobatan untuk lansia, dan berbagai pelatihan serta penyuluhan untuk masyarakat. ', 'Kader 1'),
+('AR002', 'Artikel kesehatan', 'isi artikel isi artikel isi artikel isi artikel artikel artikel artikel', 'Kader'),
+('AR003', 'artikel 2', 'iahhsjskakktruyyyyyyy uuhjjl#nmm; jshsjskks\nbsnanms', 'Kader'),
+('AR004', 'ibh dan anak', 'qweerty', 'Kader');
 
 -- --------------------------------------------------------
 
@@ -70,6 +73,14 @@ CREATE TABLE `tb_bayi` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_bayi`
+--
+
+INSERT INTO `tb_bayi` (`id_bayi`, `nama_bayi`, `tgl_lahir`, `jenis_kelamin`, `foto_bayi`, `id`) VALUES
+('BY003', 'Bayi Pertama', '2020-07-01', 'Laki-Laki', 'images/Bayi Pertama.jpeg', 4),
+('BY004', 'Bayi Kedua', '2020-08-01', 'Perempuan', 'images/Bayi Kedua.jpeg', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +93,16 @@ CREATE TABLE `tb_detail_bayi` (
   `berat_bayi` float NOT NULL,
   `tinggi_bayi` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_detail_bayi`
+--
+
+INSERT INTO `tb_detail_bayi` (`id_bayi`, `id_usia`, `berat_bayi`, `tinggi_bayi`) VALUES
+('BY003', 'US001', 3.2, 50),
+('BY003', 'US002', 5, 56),
+('BY003', 'US003', 6, 60),
+('BY004', 'US001', 3.8, 50);
 
 -- --------------------------------------------------------
 
@@ -102,8 +123,11 @@ CREATE TABLE `tb_jadwal` (
 --
 
 INSERT INTO `tb_jadwal` (`id_jadwal`, `nama_imunisasi`, `tgl_imunisasi`, `waktu`, `status`) VALUES
-('JD001', 'Pertama', '2020-08-17', '10:30:00', 'belum'),
-('JD002', 'Kedua', '2020-08-25', '11:00:00', 'belum');
+('JD001', 'Pertama', '2020-08-17', '10:30:00', 'sudah'),
+('JD002', 'Kedua', '2020-08-25', '11:00:00', 'belum'),
+('JD003', 'imunisasi ketiga', '2020-08-31', '10:15:00', 'belum'),
+('JD004', 'campak', '2020-09-05', '10:00:00', 'belum'),
+('JD005', 'covid', '2020-08-26', '23:50:00', 'belum');
 
 -- --------------------------------------------------------
 
@@ -355,8 +379,10 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO `tb_user` (`id`, `unique_id`, `nama`, `email`, `encrypted_password`, `salt`, `no_telp`, `level`) VALUES
 (1, '5f0ffb4f429309.88523551', 'Admin', 'admin', 'wbCfjRdGJMjrvl+xmWjYCkR6ZngyMTkxNzEzM2Zm', '21917133ff', '082245655379', '1'),
-(3, '5f13e1a8c050a9.13017690', 'aaa', 'bbb', 'XwcbeefPyHOEDd/c/PB6xvvZYwQ3MzYxMzBkNDY2', '736130d466', '0812345678901', '3'),
-(4, '5f1d08187511a0.76156974', 'username', 'user', 'pn62fXajmffewYadZ5aJSJlIh+AxNWE3ZjY1YWRl', '15a7f65ade', '', '3');
+(3, '5f13e1a8c050a9.13017690', 'Bidan', 'bidan', 'XwcbeefPyHOEDd/c/PB6xvvZYwQ3MzYxMzBkNDY2', '736130d466', '0812345678901', '2'),
+(4, '5f1d08187511a0.76156974', 'User', 'user', 'pn62fXajmffewYadZ5aJSJlIh+AxNWE3ZjY1YWRl', '15a7f65ade', '082234567890', '3'),
+(5, '5f3ccd0a381600.82068704', 'ibu bayi 1', 'ibu', 'ucMuSAoy7dCHcaKwM1tbkYfXL280NTRlNmQwNmMx', '454e6d06c1', '085331278987', '3'),
+(6, '5f3ce4e913d061.79559108', 'ibu bayi dua', 'user2', 'sdsn32e1b5RCbKmPLbLBUAghl0JjZDUyOWY5YzNi', 'cd529f9c3b', '0864464644664', '3');
 
 -- --------------------------------------------------------
 
@@ -506,16 +532,10 @@ ALTER TABLE `tb_usia`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `detail_bayi`
---
-ALTER TABLE `detail_bayi`
-  ADD CONSTRAINT `detail_bayi_ibfk_1` FOREIGN KEY (`id_bayi`) REFERENCES `tb_bayi` (`id_bayi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_bayi`
