@@ -13,15 +13,19 @@ import android.widget.Toast;
 
 import com.example.myposyandu.R;
 import com.example.myposyandu.SharedPrefManager;
+import com.example.myposyandu.fragment_ibu.ChartFragment;
 import com.example.myposyandu.fragment_kader.ArtikelAdminFragment;
 import com.example.myposyandu.fragment_kader.JadwalImunisasiFragment;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.ResponseBody;
@@ -37,6 +41,8 @@ public class DetailJadwalActivity extends AppCompatActivity {
     Context mContext;
     ApiService mApiService;
     ProgressDialog loading;
+
+    List<String> no_telp = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +80,8 @@ public class DetailJadwalActivity extends AppCompatActivity {
         setData(judul, tanggal, jam, status);
 
         String id_jadwal = getIntent().getStringExtra("id_jadwal");
+        getTelpon();
+
         setSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,10 +89,16 @@ public class DetailJadwalActivity extends AppCompatActivity {
                 requestSelesai(id_jadwal);
             }
         });
+
         kirimPesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendSmsByManager();
+//                sendSmsByManager();
+                int i = 0;
+                while (i<no_telp.size()){
+                    sendSms(no_telp.get(i));
+                    i++;
+                }
             }
         });
     }
@@ -135,6 +149,55 @@ public class DetailJadwalActivity extends AppCompatActivity {
                         showMessage("Koneksi Internet Bermasalah");
                     }
                 });
+    }
+
+    private void getTelpon(){
+        mApiService.getTelp().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()){
+                    try {
+                        JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                        JSONArray dataArray = jsonRESULTS.getJSONArray("data");
+
+                        for (int i = 0; i < dataArray.length(); i++) {
+                            JSONObject dataobj = dataArray.getJSONObject(i);
+                            no_telp.add(dataobj.getString("no_telp"));
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+
+    }
+    public void sendSms(String nomor) {
+        try {
+            // Get the default instance of the SmsManager
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(nomor,
+                    null,
+                    "Mohon kehadirannya pada tanggal "+getIntent().getStringExtra("tanggal")
+                            +", jam "+getIntent().getStringExtra("waktu")+" untuk melakukan imunisasi "
+                            +getIntent().getStringExtra("nama_imunisasi")+ ". Terimakasih.",
+                    null,
+                    null);
+            Toast.makeText(getApplicationContext(), "SMS Berhasil Dikirim!",
+                    Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(getApplicationContext(),"Pengiriman SMS Gagal...",
+                    Toast.LENGTH_LONG).show();
+            ex.printStackTrace();
+        }
     }
 
     public void sendSmsByManager() {

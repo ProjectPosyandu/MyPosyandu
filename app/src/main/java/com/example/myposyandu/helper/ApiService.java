@@ -89,10 +89,16 @@ public interface ApiService {
     @POST("tampilJadwal.php")
     Call<ResponseModelJadwal> getJadwal(@Field("status") String status);
 
+    @GET("tampilJadwalAll.php")
+    Call<ResponseModelJadwal> getJadwalAll();
+
     @GET("tampilDataIbu.php")
     Call<ResponseModelIbu> getDataIbu();
 
     @FormUrlEncoded
     @POST("updateJadwal.php")
     Call<ResponseBody> setSelesai(@Field("id_jadwal") String id_jadwal);
+
+    @GET("getTelp.php")
+    Call<ResponseBody> getTelp();
 }

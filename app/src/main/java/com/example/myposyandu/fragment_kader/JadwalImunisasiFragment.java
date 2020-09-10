@@ -45,7 +45,7 @@ public class JadwalImunisasiFragment extends Fragment {
         lmData = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvData.setLayoutManager(lmData);
         rvData.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        getJadwal("belum");
+        getJadwal();
 
         tambah.setOnClickListener(
                 new View.OnClickListener() {
@@ -60,9 +60,9 @@ public class JadwalImunisasiFragment extends Fragment {
         return root;
     }
 
-    public void getJadwal(String key){
+    public void getJadwal(){
         ApiService ardData = UtilsApi.getAPIService();
-        Call<ResponseModelJadwal> tampilData = ardData.getJadwal(key);
+        Call<ResponseModelJadwal> tampilData = ardData.getJadwalAll();
         tampilData.enqueue(new Callback<ResponseModelJadwal>() {
             @Override
             public void onResponse(Call<ResponseModelJadwal> call, Response<ResponseModelJadwal> response) {
