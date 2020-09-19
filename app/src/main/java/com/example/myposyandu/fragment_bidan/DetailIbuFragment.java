@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import com.example.myposyandu.R;
 import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.activity.DetailIbuActivity;
 import com.example.myposyandu.adapter.RecyclerViewAdapter;
+import com.example.myposyandu.fragment_kader.ArtikelAdminFragment;
+import com.example.myposyandu.fragment_kader.DataIbuFragment;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 import com.example.myposyandu.model.ModelDataBayi;
@@ -162,5 +165,40 @@ public class DetailIbuFragment extends Fragment {
 
     private void showMessage(String message) {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (sharedPrefManager.getSPLevel().equals("1")) {
+            getView().setFocusableInTouchMode(true);
+            getView().requestFocus();
+            getView().setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                        getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
+                                new DataIbuFragment()).commit();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        } else if (sharedPrefManager.getSPLevel().equals("2")) {
+            getView().setFocusableInTouchMode(true);
+            getView().requestFocus();
+            getView().setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                        getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
+                                new DataIbuBayiFragment()).commit();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+        }
     }
 }

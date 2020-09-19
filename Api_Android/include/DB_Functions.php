@@ -12,13 +12,14 @@ class DB_Functions {
     function __destruct() {
          
     }
-    public function simpanUser($nama, $email, $password) {
+    public function simpanUser($nama, $email, $password, $no_telp) {
         $uuid = uniqid('', true);
+        $level = "3";
         $hash = $this->hashSSHA($password);
         $encrypted_password = $hash["encrypted"]; // encrypted password
         $salt = $hash["salt"]; // salt
-        $stmt = $this->conn->prepare("INSERT INTO tb_user(unique_id, nama, email, encrypted_password, salt) VALUES(?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $uuid, $nama, $email, $encrypted_password, $salt);
+        $stmt = $this->conn->prepare("INSERT INTO tb_user(unique_id, nama, email, encrypted_password, salt, no_telp, level) VALUES(?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $uuid, $nama, $email, $encrypted_password, $salt, $no_telp, $level);
         $result = $stmt->execute();
         $stmt->close();
         // cek jika sudah sukses

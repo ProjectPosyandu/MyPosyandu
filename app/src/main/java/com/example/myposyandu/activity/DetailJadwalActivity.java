@@ -34,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailJadwalActivity extends AppCompatActivity {
-    TextView tvJudul, tvTgl, tvJam, tvStatus;
+    TextView tvJudul, tvTgl, tvJam, tvStatus, tvSetSelesai;
     Button kirimPesan, setSelesai;
     SharedPrefManager sharedPrefManager;
 
@@ -57,14 +57,11 @@ public class DetailJadwalActivity extends AppCompatActivity {
         tvStatus = findViewById(R.id.djStatus);
         kirimPesan = findViewById(R.id.djKirimPesan);
         setSelesai = findViewById(R.id.djSetSelesai);
+        tvSetSelesai = findViewById(R.id.tvSetSelesai);
         sharedPrefManager = new SharedPrefManager(this);
 
-        if (sharedPrefManager.getSPLevel().equals("1")){ //level 1 = kader (admin)
+        if (sharedPrefManager.getSPLevel().equals("1") || sharedPrefManager.getSPLevel().equals("2")){ //level 1 = kader (admin)
             kirimPesan.setVisibility(View.VISIBLE);
-            setSelesai.setVisibility(View.VISIBLE);
-        }else if (sharedPrefManager.getSPLevel().equals("2")){  //level 2 = bidan
-            kirimPesan.setVisibility(View.VISIBLE);
-            setSelesai.setVisibility(View.VISIBLE);
         }else if (sharedPrefManager.getSPLevel().equals("3")){   //level 3 = ibu bayi
             kirimPesan.setVisibility(View.INVISIBLE);
             setSelesai.setVisibility(View.INVISIBLE);
@@ -109,8 +106,12 @@ public class DetailJadwalActivity extends AppCompatActivity {
         tvJam.setText("Pukul   : "+jam);
         if (status.equals("belum")){
             tvStatus.setText("Belum Dilakukan");
+            setSelesai.setVisibility(View.VISIBLE);
+            tvSetSelesai.setVisibility(View.INVISIBLE);
         }else if (status.equals("sudah")){
             tvStatus.setText("Sudah Dilakukan");
+            setSelesai.setVisibility(View.INVISIBLE);
+            tvSetSelesai.setVisibility(View.VISIBLE);
         }
     }
 

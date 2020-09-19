@@ -40,11 +40,7 @@ public class DetailBayiActivity extends AppCompatActivity {
     }
 
     private void getIncomingExtra(){
-//        String tgl = getIntent().getStringExtra("tgl_lahir");
-//        String jk = getIntent().getStringExtra("jenis_kelamin");
         String id_bayi = getIntent().getStringExtra("id_bayi");
-//        sharedPrefManager.saveSPString(sharedPrefManager.SP_TGL, tgl);
-//        sharedPrefManager.saveSPString(sharedPrefManager.SP_JK, jk);
         sharedPrefManager.saveSPString(sharedPrefManager.SP_ID_BAYI, id_bayi);
 
     }

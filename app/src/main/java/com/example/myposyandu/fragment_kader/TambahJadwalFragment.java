@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.example.myposyandu.R;
 import com.example.myposyandu.SharedPrefManager;
 import com.example.myposyandu.activity.Main2Activity;
+import com.example.myposyandu.fragment_bidan.JadwalBidanFragment;
 import com.example.myposyandu.fragment_kader.JadwalImunisasiFragment;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
@@ -195,5 +197,40 @@ public class TambahJadwalFragment extends Fragment {
 
     private void showMessage(String message) {
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if (sharedPrefManager.getSPLevel().equals("1")){
+            getView().setFocusableInTouchMode(true);
+            getView().requestFocus();
+            getView().setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                        getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
+                                new JadwalImunisasiFragment()).commit();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        } else if (sharedPrefManager.getSPLevel().equals("2")){
+            getView().setFocusableInTouchMode(true);
+            getView().requestFocus();
+            getView().setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                        getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
+                                new JadwalBidanFragment()).commit();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+        }
     }
 }

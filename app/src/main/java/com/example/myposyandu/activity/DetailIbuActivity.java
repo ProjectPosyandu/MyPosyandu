@@ -46,13 +46,7 @@ public class DetailIbuActivity extends AppCompatActivity {
 
     private void getIncomingExtra(){
         String id = getIntent().getStringExtra("id");
-        String nama = getIntent().getStringExtra("nama");
-        String username = getIntent().getStringExtra("username");
-        String no_telp = getIntent().getStringExtra("no_telp");
         sharedPrefManager.saveSPString(sharedPrefManager.SP_ID_IBU, id);
-        sharedPrefManager.saveSPString(sharedPrefManager.SP_NAMA, nama);
-        sharedPrefManager.saveSPString(sharedPrefManager.SP_EMAIL, username);
-        sharedPrefManager.saveSPString(sharedPrefManager.SP_TELP, no_telp);
 
     }
 

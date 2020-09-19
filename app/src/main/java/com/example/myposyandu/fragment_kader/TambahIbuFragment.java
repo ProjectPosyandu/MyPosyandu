@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myposyandu.R;
+import com.example.myposyandu.activity.DetailBayiActivity;
 import com.example.myposyandu.helper.ApiService;
 import com.example.myposyandu.helper.UtilsApi;
 
@@ -131,5 +133,23 @@ public class TambahIbuFragment extends Fragment {
                         Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                    getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
+                            new DataIbuFragment()).commit();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }
