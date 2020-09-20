@@ -10,6 +10,5 @@ public class UtilsApi {
     // Mendeklarasikan Interface BaseApiService
     public static ApiService getAPIService() {
         return RetrofitClient.getClient(BASE_URL_API).create(ApiService.class);
-
     }
 }

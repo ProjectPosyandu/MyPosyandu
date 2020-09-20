@@ -2,9 +2,11 @@ package com.example.myposyandu.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myposyandu.R;
@@ -40,6 +42,9 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder
         ModelDataJadwal dm = ListData.get(position);
         holder.tvNama.setText("Jadwal Imunisasi "+dm.getNama_imunisasi());
         holder.tvTanggal.setText("Tanggal :"+dm.getTgl_imunisasi()+", Pukul : "+dm.getWaktu());
+        if (dm.getStatus().equals("sudah")){
+            holder.layout.setBackgroundResource(R.drawable.style_list);
+        }
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,12 +69,14 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView tvNama, tvTanggal;
         ConstraintLayout constraintLayout;
+        LinearLayout layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNama = itemView.findViewById(R.id.namaImunisasi);
             tvTanggal = itemView.findViewById(R.id.tglImunisasi);
             constraintLayout = itemView.findViewById(R.id.constraintLayout3);
+            layout = itemView.findViewById(R.id.layoutJadwal);
         }
     }
 }
