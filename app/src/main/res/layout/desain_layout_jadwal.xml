@@ -8,10 +8,12 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/layoutJadwal"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
         tools:ignore="MissingConstraints">
         <TextView
             android:id="@+id/namaImunisasi"
