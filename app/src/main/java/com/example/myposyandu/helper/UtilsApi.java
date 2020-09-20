@@ -3,8 +3,8 @@ package com.example.myposyandu.helper;
 
 public class UtilsApi {
 //    public static final String BASE_URL_API = "http://192.168.1.19/Api_Android/";
-//    public static final String BASE_URL_API = "http://192.168.43.216/Api_Android/";
-    public static final String BASE_URL_API = "http://192.168.43.36/Api_Android/";
+    public static final String BASE_URL_API = "http://192.168.43.216/Api_Android/";
+//    public static final String BASE_URL_API = "http://192.168.43.36/Api_Android/";
 //    public static final String BASE_URL_API = "http://myposyandu.mwebs.id/Api_Android/";
 
     // Mendeklarasikan Interface BaseApiService

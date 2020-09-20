@@ -59,13 +59,14 @@ public class TambahArtikelFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 loading = ProgressDialog.show(mContext, null, "Harap Tunggu...", true, false);
+                String penulis = sharedPrefManager.getSPNama();
                 String judul_artikel = judul.getText().toString().trim();
                 String isi_artikel = isi.getText().toString().trim();
 
-                if (judul_artikel.isEmpty() || isi_artikel.isEmpty()) {
+                if (judul_artikel.isEmpty() || isi_artikel.isEmpty() || penulis.isEmpty()) {
                     showMessage("Field belum terisi. Mohon lengkapi semua field isian diatas");
                 } else {
-                    tambahArtikel(judul_artikel,isi_artikel);
+                    tambahArtikel(judul_artikel,isi_artikel,penulis);
                 }
 
             }
@@ -83,8 +84,8 @@ public class TambahArtikelFragment extends Fragment {
 
     }
 
-    private void tambahArtikel(String judul_artikel, String isi_artikel) {
-        mApiService.tambahArtikel(judul_artikel,isi_artikel)
+    private void tambahArtikel(String judul_artikel, String isi_artikel, String penulis) {
+        mApiService.tambahArtikel(judul_artikel,isi_artikel, penulis)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

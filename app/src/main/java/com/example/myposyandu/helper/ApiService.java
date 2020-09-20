@@ -83,7 +83,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("tambahArtikel.php")
     Call<ResponseBody> tambahArtikel( @Field("judul") String judul,
-                                     @Field("isi") String isi);
+                                     @Field("isi") String isi,
+                                      @Field("penulis") String penulis);
 
     @FormUrlEncoded
     @POST("tampilJadwal.php")

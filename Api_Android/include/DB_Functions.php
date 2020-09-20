@@ -182,8 +182,8 @@ class DB_Functions {
         }
     }
 
-    public function simpanArtikel($id_artikel,$judul,$isi){
-        $penulis = "Kader";
+    public function simpanArtikel($id_artikel,$judul,$isi,$penulis){
+        // $penulis = "Kader";
         $stmt = $this->conn->prepare("INSERT INTO tb_artikel(id_artikel, judul_artikel, isi_artikel, penulis) VALUES(?, ?, ?, ?)");
         $stmt->bind_param("ssss", $id_artikel,$judul,$isi,$penulis);
         $result = $stmt->execute();
