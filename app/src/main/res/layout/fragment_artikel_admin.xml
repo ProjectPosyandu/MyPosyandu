@@ -10,7 +10,8 @@
         android:id="@+id/btnTambahArtikel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tambah Artikel"/>
+        android:text="Tambah Artikel"
+        android:background="@drawable/rec_gradient2"/>
 
     <ScrollView
         android:layout_below="@id/btnTambahArtikel"

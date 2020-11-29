@@ -112,6 +112,12 @@ public class DetailJadwalActivity extends AppCompatActivity {
             tvStatus.setText("Sudah Dilakukan");
             setSelesai.setVisibility(View.INVISIBLE);
             tvSetSelesai.setVisibility(View.VISIBLE);
+
+            if(sharedPrefManager.getSPLevel().equals("3")){
+                setSelesai.setVisibility(View.INVISIBLE);
+                tvSetSelesai.setVisibility(View.INVISIBLE);
+
+            }
         }
     }
 
